@@ -8,17 +8,15 @@
 <!--[if !(IE 7) & !(IE 8)]><!-->
 <html lang="en-US"    <!--<![endif]-->
     
-<!-- Mirrored from JARKS CTC Private Limited/developing-an-omni-channel-retail-strategy/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 20 Mar 2022 12:23:34 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+
+
 <head><meta charset="UTF-8"><script>if(navigator.userAgent.match(/MSIE|Internet Explorer/i)||navigator.userAgent.match(/Trident\/7\..*?rv:11/i)){var href=document.location.href;if(!href.match(/[?&]nowprocket/)){if(href.indexOf("?")==-1){if(href.indexOf("#")==-1){document.location.href=href+"?nowprocket=1"}else{document.location.href=href.replace("#","?nowprocket=1#")}}else{if(href.indexOf("#")==-1){document.location.href=href+"&nowprocket=1"}else{document.location.href=href.replace("#","&nowprocket=1#")}}}}</script><script>class RocketLazyLoadScripts{constructor(e){this.triggerEvents=e,this.eventOptions={passive:!0},this.userEventListener=this.triggerListener.bind(this),this.delayedScripts={normal:[],async:[],defer:[]},this.allJQueries=[]}_addUserInteractionListener(e){this.triggerEvents.forEach((t=>window.addEventListener(t,e.userEventListener,e.eventOptions)))}_removeUserInteractionListener(e){this.triggerEvents.forEach((t=>window.removeEventListener(t,e.userEventListener,e.eventOptions)))}triggerListener(){this._removeUserInteractionListener(this),"loading"===document.readyState?document.addEventListener("DOMContentLoaded",this._loadEverythingNow.bind(this)):this._loadEverythingNow()}async _loadEverythingNow(){this._delayEventListeners(),this._delayJQueryReady(this),this._handleDocumentWrite(),this._registerAllDelayedScripts(),this._preloadAllScripts(),await this._loadScriptsFromList(this.delayedScripts.normal),await this._loadScriptsFromList(this.delayedScripts.defer),await this._loadScriptsFromList(this.delayedScripts.async),await this._triggerDOMContentLoaded(),await this._triggerWindowLoad(),window.dispatchEvent(new Event("rocket-allScriptsLoaded"))}_registerAllDelayedScripts(){document.querySelectorAll("script[type=rocketlazyloadscript]").forEach((e=>{e.hasAttribute("src")?e.hasAttribute("async")&&!1!==e.async?this.delayedScripts.async.push(e):e.hasAttribute("defer")&&!1!==e.defer||"module"===e.getAttribute("data-rocket-type")?this.delayedScripts.defer.push(e):this.delayedScripts.normal.push(e):this.delayedScripts.normal.push(e)}))}async _transformScript(e){return await this._requestAnimFrame(),new Promise((t=>{const n=document.createElement("script");let r;[...e.attributes].forEach((e=>{let t=e.nodeName;"type"!==t&&("data-rocket-type"===t&&(t="type",r=e.nodeValue),n.setAttribute(t,e.nodeValue))})),e.hasAttribute("src")?(n.addEventListener("load",t),n.addEventListener("error",t)):(n.text=e.text,t()),e.parentNode.replaceChild(n,e)}))}async _loadScriptsFromList(e){const t=e.shift();return t?(await this._transformScript(t),this._loadScriptsFromList(e)):Promise.resolve()}_preloadAllScripts(){var e=document.createDocumentFragment();[...this.delayedScripts.normal,...this.delayedScripts.defer,...this.delayedScripts.async].forEach((t=>{const n=t.getAttribute("src");if(n){const t=document.createElement("link");t.href=n,t.rel="preload",t.as="script",e.appendChild(t)}})),document.head.appendChild(e)}_delayEventListeners(){let e={};function t(t,n){!function(t){function n(n){return e[t].eventsToRewrite.indexOf(n)>=0?"rocket-"+n:n}e[t]||(e[t]={originalFunctions:{add:t.addEventListener,remove:t.removeEventListener},eventsToRewrite:[]},t.addEventListener=function(){arguments[0]=n(arguments[0]),e[t].originalFunctions.add.apply(t,arguments)},t.removeEventListener=function(){arguments[0]=n(arguments[0]),e[t].originalFunctions.remove.apply(t,arguments)})}(t),e[t].eventsToRewrite.push(n)}function n(e,t){let n=e[t];Object.defineProperty(e,t,{get:()=>n||function(){},set(r){e["rocket"+t]=n=r}})}t(document,"DOMContentLoaded"),t(window,"DOMContentLoaded"),t(window,"load"),t(window,"pageshow"),t(document,"readystatechange"),n(document,"onreadystatechange"),n(window,"onload"),n(window,"onpageshow")}_delayJQueryReady(e){let t=window.jQuery;Object.defineProperty(window,"jQuery",{get:()=>t,set(n){if(n&&n.fn&&!e.allJQueries.includes(n)){n.fn.ready=n.fn.init.prototype.ready=function(t){e.domReadyFired?t.bind(document)(n):document.addEventListener("rocket-DOMContentLoaded",(()=>t.bind(document)(n)))};const t=n.fn.on;n.fn.on=n.fn.init.prototype.on=function(){if(this[0]===window){function e(e){return e.split(" ").map((e=>"load"===e||0===e.indexOf("load.")?"rocket-jquery-load":e)).join(" ")}"string"==typeof arguments[0]||arguments[0]instanceof String?arguments[0]=e(arguments[0]):"object"==typeof arguments[0]&&Object.keys(arguments[0]).forEach((t=>{delete Object.assign(arguments[0],{[e(t)]:arguments[0][t]})[t]}))}return t.apply(this,arguments),this},e.allJQueries.push(n)}t=n}})}async _triggerDOMContentLoaded(){this.domReadyFired=!0,await this._requestAnimFrame(),document.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._requestAnimFrame(),window.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._requestAnimFrame(),document.dispatchEvent(new Event("rocket-readystatechange")),await this._requestAnimFrame(),document.rocketonreadystatechange&&document.rocketonreadystatechange()}async _triggerWindowLoad(){await this._requestAnimFrame(),window.dispatchEvent(new Event("rocket-load")),await this._requestAnimFrame(),window.rocketonload&&window.rocketonload(),await this._requestAnimFrame(),this.allJQueries.forEach((e=>e(window).trigger("rocket-jquery-load"))),window.dispatchEvent(new Event("rocket-pageshow")),await this._requestAnimFrame(),window.rocketonpageshow&&window.rocketonpageshow()}_handleDocumentWrite(){const e=new Map;document.write=document.writeln=function(t){const n=document.currentScript,r=document.createRange(),i=n.parentElement;let o=e.get(n);void 0===o&&(o=n.nextSibling,e.set(n,o));const a=document.createDocumentFragment();r.setStart(a,0),a.appendChild(r.createContextualFragment(t)),i.insertBefore(a,o)}}async _requestAnimFrame(){return new Promise((e=>requestAnimationFrame(e)))}static run(){const e=new RocketLazyLoadScripts(["keydown","mousemove","touchmove","touchstart","touchend","wheel"]);e._addUserInteractionListener(e)}}RocketLazyLoadScripts.run();</script>
         
         <meta name="viewport" content="width=device-width">
         
         <link rel="profile" href="https://gmpg.org/xfn/11">
         <link rel="pingback" href="../xmlrpc.php">
-<!--  <link rel="shortcut icon" type="image/jpg" href="/wp-content/uploads/2020/10/faviconMain.png"/>  
- 
-  -->
+
         <link data-minify="1" rel="stylesheet" href="../wp-content/cache/min/1/releases/v5.0.13/css/allfd88.css?ver=1646589547" crossorigin="anonymous">
 		<link rel="stylesheet" href="../wp-content/themes/concat/css/bootstrap.min.css">
 		<link data-minify="1" rel="stylesheet" href="../wp-content/cache/min/1/wp-content/themes/concat/css/owl.carouselfd88.css?ver=1646589547">
@@ -44,8 +42,8 @@
 	<meta property="og:title" content="Developing an Omni Channel Strategy | Omni Channel Retailing Harvard" />
 	<meta property="og:description" content="Developing an Omni Channel Strategy. Are you looking for omnichannel retailing harvard business review. Contact at +91-9555626260 to know more." />
 	<meta property="og:url" content="index.html" />
-	<meta property="og:site_name" content="Conc@t" />
-	<meta property="article:publisher" content="https://www.facebook.com/Concators-100749261805054" />
+	<meta property="og:site_name" content="JARKSCTC" />
+	<meta property="article:publisher" content="https://www.facebook.com/JARKSCTC-100749261805054" />
 	<meta property="article:published_time" content="2020-10-23T14:46:07+00:00" />
 	<meta property="article:modified_time" content="2022-02-23T13:39:15+00:00" />
 	<meta property="og:image" content="../wp-content/uploads/2020/10/omniChannelEdit.jpg" />
@@ -57,16 +55,16 @@
 	<meta name="twitter:data1" content="admin" />
 	<meta name="twitter:label2" content="Est. reading time" />
 	<meta name="twitter:data2" content="5 minutes" />
-	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://JARKS CTC Private Limited/#organization","name":"Concat - Connect, Consult & Collaborate","url":"https://JARKS CTC Private Limited/","sameAs":["https://www.facebook.com/Concators-100749261805054"],"logo":{"@type":"ImageObject","@id":"https://JARKS CTC Private Limited/#logo","inLanguage":"en-US","url":"https://JARKS CTC Private Limited/wp-content/uploads/2021/08/logo.png","contentUrl":"https://JARKS CTC Private Limited/wp-content/uploads/2021/08/logo.png","width":300,"height":121,"caption":"Concat - Connect, Consult & Collaborate"},"image":{"@id":"https://JARKS CTC Private Limited/#logo"}},{"@type":"WebSite","@id":"https://JARKS CTC Private Limited/#website","url":"https://JARKS CTC Private Limited/","name":"Conc@t","description":"Business Consulting Firms in India","publisher":{"@id":"https://JARKS CTC Private Limited/#organization"},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://JARKS CTC Private Limited/?s={search_term_string}"},"query-input":"required name=search_term_string"}],"inLanguage":"en-US"},{"@type":"ImageObject","@id":"https://JARKS CTC Private Limited/developing-an-omni-channel-retail-strategy/#primaryimage","inLanguage":"en-US","url":"https://JARKS CTC Private Limited/wp-content/uploads/2020/10/omniChannelEdit.jpg","contentUrl":"https://JARKS CTC Private Limited/wp-content/uploads/2020/10/omniChannelEdit.jpg","width":1898,"height":525,"caption":"Developing an Omnichannel Strategy"},{"@type":"WebPage","@id":"https://JARKS CTC Private Limited/developing-an-omni-channel-retail-strategy/#webpage","url":"https://JARKS CTC Private Limited/developing-an-omni-channel-retail-strategy/","name":"Developing an Omni Channel Strategy | Omni Channel Retailing Harvard","isPartOf":{"@id":"https://JARKS CTC Private Limited/#website"},"primaryImageOfPage":{"@id":"https://JARKS CTC Private Limited/developing-an-omni-channel-retail-strategy/#primaryimage"},"datePublished":"2020-10-23T14:46:07+00:00","dateModified":"2022-02-23T13:39:15+00:00","description":"Developing an Omni Channel Strategy. Are you looking for omnichannel retailing harvard business review. Contact at +91-9555626260 to know more.","breadcrumb":{"@id":"https://JARKS CTC Private Limited/developing-an-omni-channel-retail-strategy/#breadcrumb"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https://JARKS CTC Private Limited/developing-an-omni-channel-retail-strategy/"]}]},{"@type":"BreadcrumbList","@id":"https://JARKS CTC Private Limited/developing-an-omni-channel-retail-strategy/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://JARKS CTC Private Limited/"},{"@type":"ListItem","position":2,"name":"Case Studiess","item":"https://JARKS CTC Private Limited/case-studies/"},{"@type":"ListItem","position":3,"name":"Developing An Omnichannel Strategy | Omni Channel Retailing Harvard Business Review"}]},{"@type":"Article","@id":"https://JARKS CTC Private Limited/developing-an-omni-channel-retail-strategy/#article","isPartOf":{"@id":"https://JARKS CTC Private Limited/developing-an-omni-channel-retail-strategy/#webpage"},"author":{"@id":"https://JARKS CTC Private Limited/#/schema/person/0de1747b3eb2e547076372a3a168e3ff"},"headline":"Developing An Omnichannel Strategy | Omni Channel Retailing Harvard Business Review","datePublished":"2020-10-23T14:46:07+00:00","dateModified":"2022-02-23T13:39:15+00:00","mainEntityOfPage":{"@id":"https://JARKS CTC Private Limited/developing-an-omni-channel-retail-strategy/#webpage"},"wordCount":1039,"commentCount":0,"publisher":{"@id":"https://JARKS CTC Private Limited/#organization"},"image":{"@id":"https://JARKS CTC Private Limited/developing-an-omni-channel-retail-strategy/#primaryimage"},"thumbnailUrl":"https://JARKS CTC Private Limited/wp-content/uploads/2020/10/omniChannelEdit.jpg","articleSection":["Business"],"inLanguage":"en-US","potentialAction":[{"@type":"CommentAction","name":"Comment","target":["https://JARKS CTC Private Limited/developing-an-omni-channel-retail-strategy/#respond"]}]},{"@type":"Person","@id":"https://JARKS CTC Private Limited/#/schema/person/0de1747b3eb2e547076372a3a168e3ff","name":"admin","image":{"@type":"ImageObject","@id":"https://JARKS CTC Private Limited/#personlogo","inLanguage":"en-US","url":"https://secure.gravatar.com/avatar/b8502ac1d36ecb89d346935593a73802?s=96&d=mm&r=g","contentUrl":"https://secure.gravatar.com/avatar/b8502ac1d36ecb89d346935593a73802?s=96&d=mm&r=g","caption":"admin"},"sameAs":["http://localhost/concat"],"url":"https://JARKS CTC Private Limited/author/admin/"}]}</script>
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"http://jarksctc.in#organization","name":"Concat - Training & Consulting Services","url":"http://jarksctc.in","sameAs":["https://www.facebook.com/JARKSCTC-100749261805054"],"logo":{"@type":"ImageObject","@id":"http://jarksctc.in#logo","inLanguage":"en-US","url":"http://jarksctc.in/wp-content/uploads/2021/08/logo.png","contentUrl":"http://jarksctc.in/wp-content/uploads/2021/08/logo.png","width":300,"height":121,"caption":"Concat - Training & Consulting Services"},"image":{"@id":"http://jarksctc.in#logo"}},{"@type":"WebSite","@id":"http://jarksctc.in#website","url":"http://jarksctc.in","name":"JARKSCTC","description":"Business Consulting Firms in India","publisher":{"@id":"http://jarksctc.in#organization"},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"http://jarksctc.in?s={search_term_string}"},"query-input":"required name=search_term_string"}],"inLanguage":"en-US"},{"@type":"ImageObject","@id":"http://jarksctc.indeveloping-an-omni-channel-retail-strategy/#primaryimage","inLanguage":"en-US","url":"http://jarksctc.in/wp-content/uploads/2020/10/omniChannelEdit.jpg","contentUrl":"http://jarksctc.in/wp-content/uploads/2020/10/omniChannelEdit.jpg","width":1898,"height":525,"caption":"Developing an Omnichannel Strategy"},{"@type":"WebPage","@id":"http://jarksctc.indeveloping-an-omni-channel-retail-strategy/#webpage","url":"http://jarksctc.indeveloping-an-omni-channel-retail-strategy/","name":"Developing an Omni Channel Strategy | Omni Channel Retailing Harvard","isPartOf":{"@id":"http://jarksctc.in#website"},"primaryImageOfPage":{"@id":"http://jarksctc.indeveloping-an-omni-channel-retail-strategy/#primaryimage"},"datePublished":"2020-10-23T14:46:07+00:00","dateModified":"2022-02-23T13:39:15+00:00","description":"Developing an Omni Channel Strategy. Are you looking for omnichannel retailing harvard business review. Contact at +91-9555626260 to know more.","breadcrumb":{"@id":"http://jarksctc.indeveloping-an-omni-channel-retail-strategy/#breadcrumb"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["http://jarksctc.indeveloping-an-omni-channel-retail-strategy/"]}]},{"@type":"BreadcrumbList","@id":"http://jarksctc.indeveloping-an-omni-channel-retail-strategy/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"http://jarksctc.in"},{"@type":"ListItem","position":2,"name":"Case Studiess","item":"http://jarksctc.incase-studies/"},{"@type":"ListItem","position":3,"name":"Developing An Omnichannel Strategy | Omni Channel Retailing Harvard Business Review"}]},{"@type":"Article","@id":"http://jarksctc.indeveloping-an-omni-channel-retail-strategy/#article","isPartOf":{"@id":"http://jarksctc.indeveloping-an-omni-channel-retail-strategy/#webpage"},"author":{"@id":"http://jarksctc.in#/schema/person/0de1747b3eb2e547076372a3a168e3ff"},"headline":"Developing An Omnichannel Strategy | Omni Channel Retailing Harvard Business Review","datePublished":"2020-10-23T14:46:07+00:00","dateModified":"2022-02-23T13:39:15+00:00","mainEntityOfPage":{"@id":"http://jarksctc.indeveloping-an-omni-channel-retail-strategy/#webpage"},"wordCount":1039,"commentCount":0,"publisher":{"@id":"http://jarksctc.in#organization"},"image":{"@id":"http://jarksctc.indeveloping-an-omni-channel-retail-strategy/#primaryimage"},"thumbnailUrl":"http://jarksctc.in/wp-content/uploads/2020/10/omniChannelEdit.jpg","articleSection":["Business"],"inLanguage":"en-US","potentialAction":[{"@type":"CommentAction","name":"Comment","target":["http://jarksctc.indeveloping-an-omni-channel-retail-strategy/#respond"]}]},{"@type":"Person","@id":"http://jarksctc.in#/schema/person/0de1747b3eb2e547076372a3a168e3ff","name":"admin","image":{"@type":"ImageObject","@id":"http://jarksctc.in#personlogo","inLanguage":"en-US","url":"https://secure.gravatar.com/avatar/b8502ac1d36ecb89d346935593a73802?s=96&d=mm&r=g","contentUrl":"https://secure.gravatar.com/avatar/b8502ac1d36ecb89d346935593a73802?s=96&d=mm&r=g","caption":"admin"},"sameAs":["http://localhost/concat"],"url":"http://jarksctc.inauthor/admin/"}]}</script>
 	<!-- / Yoast SEO plugin. -->
 
 
 <link rel='dns-prefetch' href='http://www.google.com/' />
 <link rel='dns-prefetch' href='http://fonts.googleapis.com/' />
 <link href='https://fonts.gstatic.com/' crossorigin rel='preconnect' />
-<link rel="alternate" type="application/rss+xml" title="Conc@t &raquo; Feed" href="../feed/index.html" />
-<link rel="alternate" type="application/rss+xml" title="Conc@t &raquo; Comments Feed" href="../comments/feed/index.html" />
-<link rel="alternate" type="application/rss+xml" title="Conc@t &raquo; Developing An Omnichannel Strategy | Omni Channel Retailing Harvard Business Review Comments Feed" href="feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="JARKSCTC &raquo; Feed" href="../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="JARKSCTC &raquo; Comments Feed" href="../comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="JARKSCTC &raquo; Developing An Omnichannel Strategy | Omni Channel Retailing Harvard Business Review Comments Feed" href="feed/index.html" />
 <style type="text/css">
 img.wp-smiley,
 img.emoji {
@@ -106,7 +104,7 @@ img.emoji {
 
 <link rel='stylesheet' id='twentyfourteen-style-css'  href='../wp-content/themes/concat/style69c8.css?ver=5.8.4' type='text/css' media='all' />
 <!--[if lt IE 9]>
-<link rel='stylesheet' id='twentyfourteen-ie-css'  href='https://JARKS CTC Private Limited/wp-content/themes/concat/css/ie.css?ver=20131205' type='text/css' media='all' />
+<link rel='stylesheet' id='twentyfourteen-ie-css'  href='http://jarksctc.in/wp-content/themes/concat/css/ie.css?ver=20131205' type='text/css' media='all' />
 <![endif]-->
 <link data-minify="1" rel='stylesheet' id='popup-maker-site-css'  href='../wp-content/cache/min/1/wp-content/uploads/pum/pum-site-stylesfd88.css?ver=1646589547' type='text/css' media='all' />
 <link data-minify="1" rel='stylesheet' id='jvcf7_client_css-css'  href='../wp-content/cache/min/1/wp-content/plugins/jquery-validation-for-contact-form-7/includes/assets/css/jvcf7_clientfd88.css?ver=1646589547' type='text/css' media='all' />
@@ -125,13 +123,13 @@ img.emoji {
 {
   "@context": "https://schema.org",
   "@type": "ItemList",
-  "url": "https://JARKS CTC Private Limited/developing-an-omni-channel-retail-strategy/",
+  "url": "http://jarksctc.indeveloping-an-omni-channel-retail-strategy/",
   "name": "Developing an Omni Channel Strategy",
   "itemListElement": [
     {
       "@type": "ListItem",
       "position": 1,
- "url": "https://JARKS CTC Private Limited/developing-an-omni-channel-retail-strategy/#Mobile-friendliness of the website is a necessity.
+ "url": "http://jarksctc.indeveloping-an-omni-channel-retail-strategy/#Mobile-friendliness of the website is a necessity.
 ",
       "@id": "#Mobile-friendliness of the website is a necessity",
  "name": "Mobile-friendliness of the website is a necessity"
@@ -139,42 +137,42 @@ img.emoji {
     {
       "@type": "ListItem",
       "position": 2,
-      "url": "https://JARKS CTC Private Limited/developing-an-omni-channel-retail-strategy/#Which channels are used frequently by your premium customers?",
+      "url": "http://jarksctc.indeveloping-an-omni-channel-retail-strategy/#Which channels are used frequently by your premium customers?",
  "@id": "#Which channels are used frequently by your premium customers?",
  "name": "Which channels are used frequently by your premium customers?"
     },
     {
       "@type": "ListItem",
       "position": 3,
-      "url": "https://JARKS CTC Private Limited/developing-an-omni-channel-retail-strategy/#The journey of a customer and its effective mapping.",
+      "url": "http://jarksctc.indeveloping-an-omni-channel-retail-strategy/#The journey of a customer and its effective mapping.",
  "@id": "#The journey of a customer and its effective mapping",
  "name": "The journey of a customer and its effective mapping."
     },
     {
       "@type": "ListItem",
       "position": 4,
-      "url": "https://JARKS CTC Private Limited/developing-an-omni-channel-retail-strategy/#Sit and map with your marketing channel which channel is performing better.",
+      "url": "http://jarksctc.indeveloping-an-omni-channel-retail-strategy/#Sit and map with your marketing channel which channel is performing better.",
  "@id": "#Sit and map with your marketing channel which channel is performing better",
  "name": "Sit and map with your marketing channel which channel is performing better"
     },
 {
       "@type": "ListItem",
       "position": 5,
-      "url": "https://JARKS CTC Private Limited/developing-an-omni-channel-retail-strategy/#Audience segmentation is required.",
+      "url": "http://jarksctc.indeveloping-an-omni-channel-retail-strategy/#Audience segmentation is required.",
  "@id": "#Audience segmentation is required",
  "name": "Audience segmentation is required"
     },
 {
       "@type": "ListItem",
       "position": 6,
-      "url": "https://JARKS CTC Private Limited/developing-an-omni-channel-retail-strategy/#Important and user-intent posts advantage.",
+      "url": "http://jarksctc.indeveloping-an-omni-channel-retail-strategy/#Important and user-intent posts advantage.",
  "@id": "#Important and user-intent posts advantage",
  "name": "Important and user-intent posts advantage"
     },
 {
       "@type": "ListItem",
       "position": 7,
-      "url": "https://JARKS CTC Private Limited/developing-an-omni-channel-retail-strategy/#Maximum customer channel support for all platforms.",
+      "url": "http://jarksctc.indeveloping-an-omni-channel-retail-strategy/#Maximum customer channel support for all platforms.",
  "@id": "#Maximum customer channel support for all platforms.
 ",
  "name": "Maximum customer channel support for all platforms."
@@ -277,8 +275,8 @@ You must then categorize your customers and create a personalized journey for ea
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "name": "JARKS CTC Private Limited",
-    "image": "https://JARKS CTC Private Limited/wp-content/uploads/2021/08/logo.png.webp",
-    "url": "https://JARKS CTC Private Limited/",
+    "image": "http://jarksctc.in/wp-content/uploads/2021/08/logo.png.webp",
+    "url": "http://jarksctc.in",
     "telephone": "+91-9555626260",
     "address": {
         "@type": "PostalAddress",
@@ -306,8 +304,8 @@ You must then categorize your customers and create a personalized journey for ea
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "JARKS CTC Private Limited",
-    "url": "https://JARKS CTC Private Limited/",
-    "logo": "https://JARKS CTC Private Limited/wp-content/uploads/2021/08/logo.png.webp",
+    "url": "http://jarksctc.in",
+    "logo": "http://jarksctc.in/wp-content/uploads/2021/08/logo.png.webp",
     "contactPoint": [
         {
             "@type": "ContactPoint",
@@ -323,9 +321,9 @@ You must then categorize your customers and create a personalized journey for ea
         }
     ],
     "sameAs": [
-        "https://www.facebook.com/Concators-100749261805054",
-        "https://twitter.com/Concators",
-        "https://www.instagram.com/concators/",
+        "https://www.facebook.com/JARKSCTC-100749261805054",
+        "https://twitter.com/JARKSCTC",
+        "https://www.instagram.com/JARKSCTC/",
         "https://www.youtube.com/watch?v=WCnoRcHGHCw",
         "https://www.linkedin.com/company/concat-business-consulting/"
     ]
@@ -341,8 +339,7 @@ You must then categorize your customers and create a personalized journey for ea
         "Services",
         "Financial Advisory",
         "Sales, Distribution Setup",
-        "Legal and Secretarial",
-        "Marketing and  BI",
+
         "Academic and  Content",
         "Concierge Services",
         "Human Resource Training and Development Process",
@@ -393,7 +390,7 @@ You must then categorize your customers and create a personalized journey for ea
     "@type": "WebSite",
     "name": "JARKS CTC Private Limited",
     "alternateName": "",
-    "url": "https://JARKS CTC Private Limited/"
+    "url": "http://jarksctc.in"
 }
 </script>
 <script type="application/ld+json">
@@ -402,7 +399,7 @@ You must then categorize your customers and create a personalized journey for ea
     "@type": "BlogPosting",
     "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "https://JARKS CTC Private Limited/developing-an-omni-channel-retail-strategy/"
+        "@id": "http://jarksctc.indeveloping-an-omni-channel-retail-strategy/"
     },
     "headline": "Developing An Omnichannel Strategy | Omni Channel Retailing Harvard Business Review",
     "datePublished": "2020-10-23T14:46:07+0000",
@@ -414,7 +411,7 @@ You must then categorize your customers and create a personalized journey for ea
     "description": "Developing an Omni Channel StrategyDeveloping an omnichannel strategy is quite important. Recently, the Harvar",
     "image": {
         "@type": "ImageObject",
-        "url": "https://JARKS CTC Private Limited/wp-content/uploads/2020/10/omniChannelEdit.jpg",
+        "url": "http://jarksctc.in/wp-content/uploads/2020/10/omniChannelEdit.jpg",
         "width": 1898,
         "height": 525
     },
@@ -423,7 +420,7 @@ You must then categorize your customers and create a personalized journey for ea
         "name": "JARKS CTC Private Limited",
         "logo": {
             "@type": "ImageObject",
-            "url": "https://JARKS CTC Private Limited/wp-content/uploads/2021/08/logo.png.webp",
+            "url": "http://jarksctc.in/wp-content/uploads/2021/08/logo.png.webp",
             "width": 300,
             "height": 121
         }
@@ -435,7 +432,7 @@ You must then categorize your customers and create a personalized journey for ea
 <link rel="icon" href="../wp-content/uploads/2021/09/cropped-logo-32x32.png" sizes="32x32" />
 <link rel="icon" href="../wp-content/uploads/2021/09/cropped-logo-192x192.png" sizes="192x192" />
 <link rel="apple-touch-icon" href="../wp-content/uploads/2021/09/cropped-logo-180x180.png" />
-<meta name="msapplication-TileImage" content="https://JARKS CTC Private Limited/wp-content/uploads/2021/09/cropped-logo-270x270.png" />
+<meta name="msapplication-TileImage" content="http://jarksctc.in/wp-content/uploads/2021/09/cropped-logo-270x270.png" />
 		<style type="text/css" id="wp-custom-css">
 			#ServiceSeeker ol, #serviceProvider ol, #serviceConsultant ol {
     margin-left: 18px;
@@ -648,7 +645,7 @@ body .our-service .vc_custom_1600718898184 {
     "@type": "LocalBusiness",
     "name": "JARKS CTC Private Limited",
     "image": "https://i0.wp.com/JARKS CTC Private Limited/wp-content/uploads/2021/08/logo.png",
-    "url": "https://JARKS CTC Private Limited/",
+    "url": "http://jarksctc.in",
     "telephone": "+91-9555626260",
     "address": {
         "@type": "PostalAddress",
@@ -679,7 +676,7 @@ gtag('js', new Date());
 
 gtag('config', 'AW-441447513');
 </script>
-		<script type="application/ld+json"> {   "@context": "https://schema.org",   "@type": "VideoObject",   "name": " Conc@t - B2B marketplace | Empower all your business requirements",   "description": " Conc@t is a B2B marketplace intending to help business startups, MSMEs to large corporates on critical aspects of business. Conc@t is founded by the 3’Cs concept, namely capability, consistency and cultivation, and the approach revolves around the concept of shared value to the company, the environment, and the community.",   "thumbnailUrl": " http://i3.ytimg.com/vi/1HUOgwd5has/maxresdefault.jpg",   "uploadDate": "2020-11-17",   "duration": "PT1M28S",   "contentUrl": "https://youtu.be/1HUOgwd5has",   "embedUrl": "https://www.youtube.com/embed/1HUOgwd5has" } </script>
+		<script type="application/ld+json"> {   "@context": "https://schema.org",   "@type": "VideoObject",   "name": " JARKSCTC - B2B marketplace | Empower all your business requirements",   "description": " JARKSCTC is a B2B marketplace intending to help business startups, MSMEs to large corporates on critical aspects of business. JARKSCTC is founded by the 3’Cs concept, namely capability, consistency and cultivation, and the approach revolves around the concept of shared value to the company, the environment, and the community.",   "thumbnailUrl": " http://i3.ytimg.com/vi/1HUOgwd5has/maxresdefault.jpg",   "uploadDate": "2020-11-17",   "duration": "PT1M28S",   "contentUrl": "https://youtu.be/1HUOgwd5has",   "embedUrl": "https://www.youtube.com/embed/1HUOgwd5has" } </script>
 		
 <!-- Google Tag Manager -->
 <script type="rocketlazyloadscript">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -692,12 +689,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 {
  "@context": "http://schema.org",
   "@type": "Rating",
-	  "author" : "rohit kumar",
+	  "author" : "Sai kumar",
 	  "datePublished": "2022-01-20",
 	  "itemReviewed": {
-			"@id" : "https://JARKS CTC Private Limited/"
+			"@id" : "http://jarksctc.in"
 			  },
-	  "reviewBody": "Thanks for offering excellent service of finding the best hr outsourcing companies in India. Concators team is highly professional.",
+	  "reviewBody": "Thanks for offering excellent service of finding the best hr outsourcing companies in India. JARKSCTC team is highly professional.",
 	  "reviewRating":
 		{
 		"@type": "Rating",
@@ -713,7 +710,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	  "datePublished": "2022-01-02",
 	  "reviewBody": "The Dream of having a business is fulfilled now. The decision of working with a wonderful CONCAT team is fruitful highly recommend business consulting firms.",
 	  "itemReviewed": {
-			"@id" : "https://JARKS CTC Private Limited/"
+			"@id" : "http://jarksctc.in"
 			  },
 		"reviewRating":
                {
@@ -728,9 +725,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	  "@type": "Rating",
 	  "author" : "K Sai Kumar",
 	  "datePublished": "2022-01-07",
-	  "reviewBody": "Thanks Concators team. you have done a great service professionally of startup consultants in Delhi.",
+	  "reviewBody": "Thanks JARKSCTC team. you have done a great service professionally of startup consultants in Delhi.",
 	  "itemReviewed": {
-			"@id" : "https://JARKS CTC Private Limited/"
+			"@id" : "http://jarksctc.in"
 			  },
 		"reviewRating":
                {
@@ -745,9 +742,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	  "@type": "Rating",
 	  "author" : "Tanishka Khatri",
 	  "datePublished": "2022-01-11",
-	  "reviewBody": "Thanks for the great virtual HR services. Services of Concators are excellent.",
+	  "reviewBody": "Thanks for the great virtual HR services. Services of JARKSCTC are excellent.",
 	  "itemReviewed": {
-			"@id" : "https://JARKS CTC Private Limited/"
+			"@id" : "http://jarksctc.in"
 			  },
 		"reviewRating":
                {
@@ -760,11 +757,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 		 },
 	{
 	  "@type": "Rating",
-	  "author" : "Digital Apna",
+	  "author" : "Sai kumar",
 	  "datePublished": "2022-02-22",
 	  "reviewBody": "Excellent company.",
 	  "itemReviewed": {
-			"@id" : "https://JARKS CTC Private Limited/"
+			"@id" : "http://jarksctc.in"
 			  },
 		"reviewRating":
                {
@@ -790,10 +787,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 "@type": "AggregateRating",
 "itemReviewed": {
 "@type": "LocalBusiness",
-"image": "https://JARKS CTC Private Limited/wp-content/uploads/2021/08/logo.png",
+"image": "http://jarksctc.in/wp-content/uploads/2021/08/logo.png",
 "name": "JARKS CTC Private Limited",
 "priceRange": "INR",
-"telephone": "+919555626260",
+"telephone": "+917842012468",
 "address" : {
 "@type": "PostalAddress",
 "streetAddress": "RPGT ROAD, HINDUPUR, Andhra Pradesh, IN-515201.",
@@ -936,7 +933,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		<div class="row">
 			<div class="col-sm-12 col-md-7">
 									<div class="post_thumbnail">
-							<img width="1898" height="525" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201898%20525'%3E%3C/svg%3E" class="attachment-full size-full wp-post-image" alt="Developing an Omnichannel Strategy" data-lazy-srcset="https://JARKS CTC Private Limited/wp-content/uploads/2020/10/omniChannelEdit.jpg 1898w, https://JARKS CTC Private Limited/wp-content/uploads/2020/10/omniChannelEdit-300x83.jpg 300w, https://JARKS CTC Private Limited/wp-content/uploads/2020/10/omniChannelEdit-1024x283.jpg 1024w, https://JARKS CTC Private Limited/wp-content/uploads/2020/10/omniChannelEdit-768x212.jpg 768w, https://JARKS CTC Private Limited/wp-content/uploads/2020/10/omniChannelEdit-1536x425.jpg 1536w" data-lazy-sizes="(max-width: 1898px) 100vw, 1898px" data-lazy-src="../wp-content/uploads/2020/10/omniChannelEdit.jpg" /><noscript><img width="1898" height="525" src="../wp-content/uploads/2020/10/omniChannelEdit.jpg" class="attachment-full size-full wp-post-image" alt="Developing an Omnichannel Strategy" srcset="https://JARKS CTC Private Limited/wp-content/uploads/2020/10/omniChannelEdit.jpg 1898w, https://JARKS CTC Private Limited/wp-content/uploads/2020/10/omniChannelEdit-300x83.jpg 300w, https://JARKS CTC Private Limited/wp-content/uploads/2020/10/omniChannelEdit-1024x283.jpg 1024w, https://JARKS CTC Private Limited/wp-content/uploads/2020/10/omniChannelEdit-768x212.jpg 768w, https://JARKS CTC Private Limited/wp-content/uploads/2020/10/omniChannelEdit-1536x425.jpg 1536w" sizes="(max-width: 1898px) 100vw, 1898px" /></noscript>					</div>
+							<img width="1898" height="525" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201898%20525'%3E%3C/svg%3E" class="attachment-full size-full wp-post-image" alt="Developing an Omnichannel Strategy" data-lazy-srcset="http://jarksctc.in/wp-content/uploads/2020/10/omniChannelEdit.jpg 1898w, http://jarksctc.in/wp-content/uploads/2020/10/omniChannelEdit-300x83.jpg 300w, http://jarksctc.in/wp-content/uploads/2020/10/omniChannelEdit-1024x283.jpg 1024w, http://jarksctc.in/wp-content/uploads/2020/10/omniChannelEdit-768x212.jpg 768w, http://jarksctc.in/wp-content/uploads/2020/10/omniChannelEdit-1536x425.jpg 1536w" data-lazy-sizes="(max-width: 1898px) 100vw, 1898px" data-lazy-src="../wp-content/uploads/2020/10/omniChannelEdit.jpg" /><noscript><img width="1898" height="525" src="../wp-content/uploads/2020/10/omniChannelEdit.jpg" class="attachment-full size-full wp-post-image" alt="Developing an Omnichannel Strategy" srcset="http://jarksctc.in/wp-content/uploads/2020/10/omniChannelEdit.jpg 1898w, http://jarksctc.in/wp-content/uploads/2020/10/omniChannelEdit-300x83.jpg 300w, http://jarksctc.in/wp-content/uploads/2020/10/omniChannelEdit-1024x283.jpg 1024w, http://jarksctc.in/wp-content/uploads/2020/10/omniChannelEdit-768x212.jpg 768w, http://jarksctc.in/wp-content/uploads/2020/10/omniChannelEdit-1536x425.jpg 1536w" sizes="(max-width: 1898px) 100vw, 1898px" /></noscript>					</div>
 								<div class="post_content_area">
 				<h3>Developing an Omni Channel Strategy</h3>
 <p><span data-preserver-spaces="true">Developing an omnichannel strategy is quite important. Recently, the Harvard Business Review studied 46,000 shoppers to gauge the impact (if any) omnichannel retailing had on their experience.</span></p>
@@ -950,8 +947,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li><span data-preserver-spaces="true">Another study by Business Insider found that shoppers who engaged on multiple channels made purchases more often.</span></li>
 </ol>
 <p><span data-preserver-spaces="true">Omni-channel merges the worlds of websites, emails, re-targeted ads, social media &amp; </span><a class="editor-rtfLink" href="../brand-promotion-services/index.html" target="_blank" rel="noopener"><strong><span data-preserver-spaces="true">brand promotion services</span></strong></a><span data-preserver-spaces="true">, and physical locations to show personalized offers, products, and messages.</span></p>
-<p><span data-preserver-spaces="true">The Store and the Online World are connected. Concators have the prowess for the proper infrastructure, tech stack, and the necessary vision to integrate and execute. Critical factors that Concators has to offer are Consistency and Seamless Integration.</span></p>
-<p><img class="wp-image-1132 size-full" style="color: initial;" title="Developing an Omnichannel Strategy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20625%20272'%3E%3C/svg%3E" alt="Developing an Omnichannel Strategy" width="625" height="272" data-lazy-srcset="https://JARKS CTC Private Limited/wp-content/uploads/2020/10/Developing-an-Omni-Channel-Retail-Strategy.png 625w, https://JARKS CTC Private Limited/wp-content/uploads/2020/10/Developing-an-Omni-Channel-Retail-Strategy-300x131.png 300w" data-lazy-sizes="(max-width: 625px) 100vw, 625px" data-lazy-src="../wp-content/uploads/2020/10/Developing-an-Omni-Channel-Retail-Strategy.png" /><noscript><img class="wp-image-1132 size-full" style="color: initial;" title="Developing an Omnichannel Strategy" src="../wp-content/uploads/2020/10/Developing-an-Omni-Channel-Retail-Strategy.png" alt="Developing an Omnichannel Strategy" width="625" height="272" srcset="https://JARKS CTC Private Limited/wp-content/uploads/2020/10/Developing-an-Omni-Channel-Retail-Strategy.png 625w, https://JARKS CTC Private Limited/wp-content/uploads/2020/10/Developing-an-Omni-Channel-Retail-Strategy-300x131.png 300w" sizes="(max-width: 625px) 100vw, 625px" /></noscript></p>
+<p><span data-preserver-spaces="true">The Store and the Online World are connected. JARKSCTC have the prowess for the proper infrastructure, tech stack, and the necessary vision to integrate and execute. Critical factors that JARKSCTC has to offer are Consistency and Seamless Integration.</span></p>
+<p><img class="wp-image-1132 size-full" style="color: initial;" title="Developing an Omnichannel Strategy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20625%20272'%3E%3C/svg%3E" alt="Developing an Omnichannel Strategy" width="625" height="272" data-lazy-srcset="http://jarksctc.in/wp-content/uploads/2020/10/Developing-an-Omni-Channel-Retail-Strategy.png 625w, http://jarksctc.in/wp-content/uploads/2020/10/Developing-an-Omni-Channel-Retail-Strategy-300x131.png 300w" data-lazy-sizes="(max-width: 625px) 100vw, 625px" data-lazy-src="../wp-content/uploads/2020/10/Developing-an-Omni-Channel-Retail-Strategy.png" /><noscript><img class="wp-image-1132 size-full" style="color: initial;" title="Developing an Omnichannel Strategy" src="../wp-content/uploads/2020/10/Developing-an-Omni-Channel-Retail-Strategy.png" alt="Developing an Omnichannel Strategy" width="625" height="272" srcset="http://jarksctc.in/wp-content/uploads/2020/10/Developing-an-Omni-Channel-Retail-Strategy.png 625w, http://jarksctc.in/wp-content/uploads/2020/10/Developing-an-Omni-Channel-Retail-Strategy-300x131.png 300w" sizes="(max-width: 625px) 100vw, 625px" /></noscript></p>
 <p>Developing an Omnichannel Strategy</p>
 <h3><span data-preserver-spaces="true">We Help You in Creating Omnichannel Marketing to:</span></h3>
 <ol>
@@ -971,7 +968,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li><span data-preserver-spaces="true">Significant and user-intent posts advantage.</span></li>
 <li><span data-preserver-spaces="true">Maximum customer channel support for all platforms.</span></li>
 </ol>
-<p><span data-preserver-spaces="true">At Concators, we also provide </span><a class="editor-rtfLink" href="../virtual-cto-services/index.html" target="_blank" rel="noopener"><strong><span data-preserver-spaces="true">virtual CTO services</span></strong></a><span data-preserver-spaces="true"> via </span><a class="editor-rtfLink" href="../index.html" target="_blank" rel="noopener"><strong><span data-preserver-spaces="true">business consulting firms</span></strong></a><span data-preserver-spaces="true"> at an unbeatable cost.</span></p>
+<p><span data-preserver-spaces="true">At JARKSCTC, we also provide </span><a class="editor-rtfLink" href="../virtual-cto-services/index.html" target="_blank" rel="noopener"><strong><span data-preserver-spaces="true">virtual CTO services</span></strong></a><span data-preserver-spaces="true"> via </span><a class="editor-rtfLink" href="../index.html" target="_blank" rel="noopener"><strong><span data-preserver-spaces="true">business consulting firms</span></strong></a><span data-preserver-spaces="true"> at an unbeatable cost.</span></p>
 <p><span data-preserver-spaces="true">So, we hope you enjoyed reading about Developing an Omni Channel Strategy here.</span></p>
 <h2><span data-preserver-spaces="true">Frequently Asked Questions (FAQs)</span></h2>
 <h3><span data-preserver-spaces="true">What is an Omnichannel Strategy?</span></h3>
@@ -1043,7 +1040,7 @@ Contact us for HR Shared Services now.
 									</li>
 					</ul>
 
-		</div></aside><aside id="search-3" class="widget-container widget_search"><div class="widget-wrapper clearfix"><form role="search" method="get" class="search-form" action="https://JARKS CTC Private Limited/">
+		</div></aside><aside id="search-3" class="widget-container widget_search"><div class="widget-wrapper clearfix"><form role="search" method="get" class="search-form" action="http://jarksctc.in">
 				<label>
 					<span class="screen-reader-text">Search for:</span>
 					<input type="search" class="search-field" placeholder="Search &hellip;" value="" name="s" />
@@ -1072,7 +1069,7 @@ Contact us for HR Shared Services now.
             <div class="container">
                <div class="row">
                   <div class="col-md-3 footer-col wow fadeInUp" data-wow-offset="10"data-wow-duration="1.5s">
-                     <div class="footer-logo"><a href="../index.html"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="footer logo" data-lazy-src="https://JARKS CTC Private Limited/wp-content/uploads/2021/08/logo.png"><noscript><img src="../wp-content/uploads/2021/08/logo.png" alt="footer logo"></noscript></a></div>
+                     <div class="footer-logo"><a href="../index.html"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="footer logo" data-lazy-src="http://jarksctc.in/wp-content/uploads/2021/08/logo.png"><noscript><img src="../wp-content/uploads/2021/08/logo.png" alt="footer logo"></noscript></a></div>
                      <div class="address">
                     <div class="widget-wrapper clearfix">			<div class="textwidget"><p>RPGT ROAD, HINDUPUR, Anantapur,<br />
 Andhra Pradesh-515201, IN</p>
@@ -1131,11 +1128,11 @@ Andhra Pradesh-515201, IN</p>
                <div class="container">
                   <hr>
                   <div class="col-md-12">
-                     <p class="copyright">&copy; 2020 Conc@t, All Rights Reserved.</p>
+                     <p class="copyright">&copy; 2020 JARKSCTC, All Rights Reserved.</p>
                      <ul class="social-icon">
-                        <li><a href="https://www.facebook.com/Concators-100749261805054" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                        <li><a href="https://www.facebook.com/JARKSCTC-100749261805054" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
                         <li><a href="https://www.instagram.com/concat_business_consulting/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                        <li><a href="https://twitter.com/Concators" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                        <li><a href="https://twitter.com/JARKSCTC" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
 						 <li><a href="https://www.linkedin.com/company/concat-business-consulting/" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
                      </ul>
                   </div>
@@ -1176,7 +1173,7 @@ Andhra Pradesh-515201, IN</p>
 				<div class="mb-4">
 					<p><strong>Terms</strong></p>
 					<p>
-						By accessing the website of M/s Conc@t Business Consultants Private Limited ( CONCATORS ) at https://www.JARKS CTC Private Limited ,
+						By accessing the website of M/s JARKSCTC Business Consultants Private Limited ( JARKSCTC ) at https://www.JARKS CTC Private Limited ,
 						you are agreeing to be bound by these terms & conditions of its use, all applicable laws and regulations, and agree that
 						you are responsible for compliance with the same and shall be used only for your personal, non-commercial purposes. If
 						you are disagreement with any of these terms, you are prohibited from using or accessing this site. The materials
@@ -1190,7 +1187,7 @@ Andhra Pradesh-515201, IN</p>
 					<p><strong>Usage License</strong></p>
 					<p>
 						No permission is granted to temporarily or permanently download or use or make any copy of the materials (information or
-						software) on CONCATORS website for personal or any other form of usage except for the purpose of registration. By
+						software) on JARKSCTC website for personal or any other form of usage except for the purpose of registration. By
 						accessing the information on this website, you agree to not:<br>
 						a) Alter, modify or copy the materials;<br>
 						b) use the materials for any commercial purpose, or for any public display (commercial or non-commercial);<br>
@@ -1206,13 +1203,13 @@ Andhra Pradesh-515201, IN</p>
 					<p><strong>Disclaimer</strong></p>
 					<p>
 						a) The materials on this website are provided on an ‘as is’ basis. Whilst every effort is made to update the information
-						contained on the website, however CONCATORS makes no warranties, expressed or implied, and hereby disclaims and negates
+						contained on the website, however JARKSCTC makes no warranties, expressed or implied, and hereby disclaims and negates
 						all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a
 						particular purpose, or non-infringement of intellectual property or other violation of rights.<br>
-						b) Further, CONCATORS does not warrant or make any representations concerning the accuracy, likely results, or
+						b) Further, JARKSCTC does not warrant or make any representations concerning the accuracy, likely results, or
 						reliability of the use of the materials on its website or otherwise relating to such materials or on any sites linked to
 						this site.<br>
-						c) The CONCATORS reserves the right at any time to change or discontinue without notice, any aspect or feature of this
+						c) The JARKSCTC reserves the right at any time to change or discontinue without notice, any aspect or feature of this
 						website. No information shall be construed as advice and information are offered for information purposes only and is
 						not intended for any other purposes. You and your company rely on the information contained on this website at your own
 						risk. If you find an error or omission at this site, please let us know.
@@ -1222,7 +1219,7 @@ Andhra Pradesh-515201, IN</p>
 				<div class="mb-4">
 					<p><strong>Liability</strong></p>
 					<p>
-						a) Conc@t Business Consultants private Limited shall not be responsible for and disclaims all liability for any loss,
+						a) JARKSCTC Business Consultants private Limited shall not be responsible for and disclaims all liability for any loss,
 						liability, damage (whether direct, indirect or consequential), personal injury or expense of any nature whatsoever which
 						may be suffered by you or any third party (including your company), as a result of or which may be attributable,
 						directly or indirectly, to your access and use of the website, any information contained on the website, you or your
@@ -1233,10 +1230,10 @@ Andhra Pradesh-515201, IN</p>
 						or the transmission thereof, or for any actions taken in reliance thereon or occasioned thereby or by reason of
 						non-performance or interruption, or termination thereof.<br>
 
-						b) In no event shall CONCATORS or its subsidiaries or its associate Companies including its allied partners, suppliers
+						b) In no event shall JARKSCTC or its subsidiaries or its associate Companies including its allied partners, suppliers
 						or third party service providers / vendors be liable for any damages (including, without limitation, damages for loss of
-						data or profit, or due to business interruption) arising out of the use or inability to use the materials on CONCATORS
-						website, even if CONCATORS. or an authorized representative of CONCATORS has been notified orally or in writing of the
+						data or profit, or due to business interruption) arising out of the use or inability to use the materials on JARKSCTC
+						website, even if JARKSCTC. or an authorized representative of JARKSCTC has been notified orally or in writing of the
 						possibility of such damage.
 					</p>
 				</div>
@@ -1244,9 +1241,9 @@ Andhra Pradesh-515201, IN</p>
 				<div class="mb-4">
 					<p><strong>Accuracy of materials</strong></p>
 					<p>
-						The materials appearing on CONCATORS website could include technical, typographical, or photographic errors. CONCATORS
-						does not warrant that any of the materials on its website are accurate, complete or current. CONCATORS may make changes
-						to the materials contained on its website at any time without notice. However, CONCATORS does not make any commitment to
+						The materials appearing on JARKSCTC website could include technical, typographical, or photographic errors. JARKSCTC
+						does not warrant that any of the materials on its website are accurate, complete or current. JARKSCTC may make changes
+						to the materials contained on its website at any time without notice. However, JARKSCTC does not make any commitment to
 						update the materials.
 					</p>
 				</div>
@@ -1254,16 +1251,16 @@ Andhra Pradesh-515201, IN</p>
 				<div class="mb-4">
 					<p><strong>Links</strong></p>
 					<p>
-						CONCATORS has not reviewed all the sites linked to our website and is not responsible for the contents of any such
+						JARKSCTC has not reviewed all the sites linked to our website and is not responsible for the contents of any such
 						linked site, that may have changed post the linkage provided. The inclusion of any link does not imply endorsement by
-						CONCATORS of this site. Use of any such linked website is at the user’s own risk.
+						JARKSCTC of this site. Use of any such linked website is at the user’s own risk.
 					</p>
 				</div>
 
 				<div class="mb-4">
 					<p><strong>Modifications</strong></p>
 					<p>
-						CONCATORS may revise these terms of service for its website at any time without notice. By using this website, you are
+						JARKSCTC may revise these terms of service for its website at any time without notice. By using this website, you are
 						agreeing to be bound by the then current version of these terms of service.
 					</p>
 				</div>
@@ -1284,7 +1281,7 @@ Andhra Pradesh-515201, IN</p>
 				<div class="mb-4">
 					<p><strong>Indemnification</strong></p>
 					<p>
-						You agree to indemnify and hold the CONCATORS and its subsidiaries, associate companies including the officers, agents,
+						You agree to indemnify and hold the JARKSCTC and its subsidiaries, associate companies including the officers, agents,
 						employees, partners, and licensors harmless from any claim or demand, including reasonable attorneys’ fees, made by any
 						third party due to or arising out of your use of this website.
 					</p>
@@ -1299,8 +1296,8 @@ Andhra Pradesh-515201, IN</p>
 						within the Service (collectively “Terms”) govern your use of the service, site, content, and software (collectively the
 						"Service").
 						By registering for or using the Service or any portion of it you accept the Terms. The Terms constitute an agreement
-						between you and Conc@t Business Consultant Private Limited including its associate companies, affiliates, and suppliers
-						(collectively “CONCATOR”), defining your and CONCATORS rights and responsibilities with respect to the Service.
+						between you and JARKSCTC Business Consultant Private Limited including its associate companies, affiliates, and suppliers
+						(collectively “CONCATOR”), defining your and JARKSCTC rights and responsibilities with respect to the Service.
 					</p>
 				</div>
 			</div>
@@ -1341,7 +1338,7 @@ s0.parentNode.insertBefore(s1,s0);
 				<div class="pum-content popmake-content" tabindex="0">
 			<div role="form" class="wpcf7" id="wpcf7-f1164-o1" lang="en-US" dir="ltr">
 <div class="screen-reader-response"><p role="status" aria-live="polite" aria-atomic="true"></p> <ul></ul></div>
-<form action="https://JARKS CTC Private Limited/developing-an-omni-channel-retail-strategy/#wpcf7-f1164-o1" method="post" class="wpcf7-form init wpcf7-acceptance-as-validation" novalidate="novalidate" data-status="init">
+<form action="http://jarksctc.indeveloping-an-omni-channel-retail-strategy/#wpcf7-f1164-o1" method="post" class="wpcf7-form init wpcf7-acceptance-as-validation" novalidate="novalidate" data-status="init">
 <div style="display: none;">
 <input type="hidden" name="_wpcf7" value="1164" />
 <input type="hidden" name="_wpcf7_version" value="5.5.6" />
@@ -1426,5 +1423,4 @@ images=mutation.addedNodes[i].getElementsByTagName('img');is_image=mutation.adde
 if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_count>0){lazyLoadInstance.update()}});var b=document.getElementsByTagName("body")[0];var config={childList:!0,subtree:!0};observer.observe(b,config)}},!1)</script><script data-no-minify="1" async src="../wp-content/plugins/wp-rocket/assets/js/lazyload/17.5/lazyload.min.js"></script><script>function lazyLoadThumb(e){var t='<img data-lazy-src="https://i.ytimg.com/vi/ID/hqdefault.jpg" alt="" width="480" height="360"><noscript><img src="https://i.ytimg.com/vi/ID/hqdefault.jpg" alt="" width="480" height="360"></noscript>',a='<button class="play" aria-label="play Youtube video"></button>';return t.replace("ID",e)+a}function lazyLoadYoutubeIframe(){var e=document.createElement("iframe"),t="ID?autoplay=1";t+=0===this.parentNode.dataset.query.length?'':'&'+this.parentNode.dataset.query;e.setAttribute("src",t.replace("ID",this.parentNode.dataset.src)),e.setAttribute("frameborder","0"),e.setAttribute("allowfullscreen","1"),e.setAttribute("allow", "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"),this.parentNode.parentNode.replaceChild(e,this.parentNode)}document.addEventListener("DOMContentLoaded",function(){var e,t,p,a=document.getElementsByClassName("rll-youtube-player");for(t=0;t<a.length;t++)e=document.createElement("div"),e.setAttribute("data-id",a[t].dataset.id),e.setAttribute("data-query", a[t].dataset.query),e.setAttribute("data-src", a[t].dataset.src),e.innerHTML=lazyLoadThumb(a[t].dataset.id),a[t].appendChild(e),p=e.querySelector('.play'),p.onclick=lazyLoadYoutubeIframe});</script>
 </body>
 
-<!-- Mirrored from JARKS CTC Private Limited/developing-an-omni-channel-retail-strategy/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 20 Mar 2022 12:23:49 GMT -->
 </html>
