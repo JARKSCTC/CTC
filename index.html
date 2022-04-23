@@ -8,7 +8,12 @@
 <!--[if !(IE 7) & !(IE 8)]><!-->
 <html lang="en-US"    <!--<![endif]-->
 
-<head><meta charset="UTF-8"><script>if(navigator.userAgent.match(/MSIE|Internet Explorer/i)||navigator.userAgent.match(/Trident\/7\..*?rv:11/i)){var href=document.location.href;if(!href.match(/[?&]nowprocket/)){if(href.indexOf("?")==-1){if(href.indexOf("#")==-1){document.location.href=href+"?nowprocket=1"}else{document.location.href=href.replace("#","?nowprocket=1#")}}else{if(href.indexOf("#")==-1){document.location.href=href+"&nowprocket=1"}else{document.location.href=href.replace("#","&nowprocket=1#")}}}}</script><script>class RocketLazyLoadScripts{constructor(e){this.triggerEvents=e,this.eventOptions={passive:!0},this.userEventListener=this.triggerListener.bind(this),this.delayedScripts={normal:[],async:[],defer:[]},this.allJQueries=[]}_addUserInteractionListener(e){this.triggerEvents.forEach((t=>window.addEventListener(t,e.userEventListener,e.eventOptions)))}_removeUserInteractionListener(e){this.triggerEvents.forEach((t=>window.removeEventListener(t,e.userEventListener,e.eventOptions)))}triggerListener(){this._removeUserInteractionListener(this),"loading"===document.readyState?document.addEventListener("DOMContentLoaded",this._loadEverythingNow.bind(this)):this._loadEverythingNow()}async _loadEverythingNow(){this._delayEventListeners(),this._delayJQueryReady(this),this._handleDocumentWrite(),this._registerAllDelayedScripts(),this._preloadAllScripts(),await this._loadScriptsFromList(this.delayedScripts.normal),await this._loadScriptsFromList(this.delayedScripts.defer),await this._loadScriptsFromList(this.delayedScripts.async),await this._triggerDOMContentLoaded(),await this._triggerWindowLoad(),window.dispatchEvent(new Event("rocket-allScriptsLoaded"))}_registerAllDelayedScripts(){document.querySelectorAll("script[type=rocketlazyloadscript]").forEach((e=>{e.hasAttribute("src")?e.hasAttribute("async")&&!1!==e.async?this.delayedScripts.async.push(e):e.hasAttribute("defer")&&!1!==e.defer||"module"===e.getAttribute("data-rocket-type")?this.delayedScripts.defer.push(e):this.delayedScripts.normal.push(e):this.delayedScripts.normal.push(e)}))}async _transformScript(e){return await this._requestAnimFrame(),new Promise((t=>{const n=document.createElement("script");let r;[...e.attributes].forEach((e=>{let t=e.nodeName;"type"!==t&&("data-rocket-type"===t&&(t="type",r=e.nodeValue),n.setAttribute(t,e.nodeValue))})),e.hasAttribute("src")?(n.addEventListener("load",t),n.addEventListener("error",t)):(n.text=e.text,t()),e.parentNode.replaceChild(n,e)}))}async _loadScriptsFromList(e){const t=e.shift();return t?(await this._transformScript(t),this._loadScriptsFromList(e)):Promise.resolve()}_preloadAllScripts(){var e=document.createDocumentFragment();[...this.delayedScripts.normal,...this.delayedScripts.defer,...this.delayedScripts.async].forEach((t=>{const n=t.getAttribute("src");if(n){const t=document.createElement("link");t.href=n,t.rel="preload",t.as="script",e.appendChild(t)}})),document.head.appendChild(e)}_delayEventListeners(){let e={};function t(t,n){!function(t){function n(n){return e[t].eventsToRewrite.indexOf(n)>=0?"rocket-"+n:n}e[t]||(e[t]={originalFunctions:{add:t.addEventListener,remove:t.removeEventListener},eventsToRewrite:[]},t.addEventListener=function(){arguments[0]=n(arguments[0]),e[t].originalFunctions.add.apply(t,arguments)},t.removeEventListener=function(){arguments[0]=n(arguments[0]),e[t].originalFunctions.remove.apply(t,arguments)})}(t),e[t].eventsToRewrite.push(n)}function n(e,t){let n=e[t];Object.defineProperty(e,t,{get:()=>n||function(){},set(r){e["rocket"+t]=n=r}})}t(document,"DOMContentLoaded"),t(window,"DOMContentLoaded"),t(window,"load"),t(window,"pageshow"),t(document,"readystatechange"),n(document,"onreadystatechange"),n(window,"onload"),n(window,"onpageshow")}_delayJQueryReady(e){let t=window.jQuery;Object.defineProperty(window,"jQuery",{get:()=>t,set(n){if(n&&n.fn&&!e.allJQueries.includes(n)){n.fn.ready=n.fn.init.prototype.ready=function(t){e.domReadyFired?t.bind(document)(n):document.addEventListener("rocket-DOMContentLoaded",(()=>t.bind(document)(n)))};const t=n.fn.on;n.fn.on=n.fn.init.prototype.on=function(){if(this[0]===window){function e(e){return e.split(" ").map((e=>"load"===e||0===e.indexOf("load.")?"rocket-jquery-load":e)).join(" ")}"string"==typeof arguments[0]||arguments[0]instanceof String?arguments[0]=e(arguments[0]):"object"==typeof arguments[0]&&Object.keys(arguments[0]).forEach((t=>{delete Object.assign(arguments[0],{[e(t)]:arguments[0][t]})[t]}))}return t.apply(this,arguments),this},e.allJQueries.push(n)}t=n}})}async _triggerDOMContentLoaded(){this.domReadyFired=!0,await this._requestAnimFrame(),document.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._requestAnimFrame(),window.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._requestAnimFrame(),document.dispatchEvent(new Event("rocket-readystatechange")),await this._requestAnimFrame(),document.rocketonreadystatechange&&document.rocketonreadystatechange()}async _triggerWindowLoad(){await this._requestAnimFrame(),window.dispatchEvent(new Event("rocket-load")),await this._requestAnimFrame(),window.rocketonload&&window.rocketonload(),await this._requestAnimFrame(),this.allJQueries.forEach((e=>e(window).trigger("rocket-jquery-load"))),window.dispatchEvent(new Event("rocket-pageshow")),await this._requestAnimFrame(),window.rocketonpageshow&&window.rocketonpageshow()}_handleDocumentWrite(){const e=new Map;document.write=document.writeln=function(t){const n=document.currentScript,r=document.createRange(),i=n.parentElement;let o=e.get(n);void 0===o&&(o=n.nextSibling,e.set(n,o));const a=document.createDocumentFragment();r.setStart(a,0),a.appendChild(r.createContextualFragment(t)),i.insertBefore(a,o)}}async _requestAnimFrame(){return new Promise((e=>requestAnimationFrame(e)))}static run(){const e=new RocketLazyLoadScripts(["keydown","mousemove","touchmove","touchstart","touchend","wheel"]);e._addUserInteractionListener(e)}}RocketLazyLoadScripts.run();</script>
+<head><meta charset="UTF-8"><script>if(navigator.userAgent.match(/MSIE|Internet Explorer/i)
+||navigator.userAgent.match(/Trident\/7\..*?rv:11/i))
+{var href=document.location.href;if(!href.match(/[?&]nowprocket/))
+    {if(href.indexOf("?")==-1){if(href.indexOf("#")==-1){document.location.href=href+"?nowprocket=1"}
+    else{document.location.href=href.replace("#","?nowprocket=1#")}}else{if(href.indexOf("#")==-1)
+    {document.location.href=href+"&nowprocket=1"}else{document.location.href=href.replace("#","&nowprocket=1#")}}}}</script><script>class RocketLazyLoadScripts{constructor(e){this.triggerEvents=e,this.eventOptions={passive:!0},this.userEventListener=this.triggerListener.bind(this),this.delayedScripts={normal:[],async:[],defer:[]},this.allJQueries=[]}_addUserInteractionListener(e){this.triggerEvents.forEach((t=>window.addEventListener(t,e.userEventListener,e.eventOptions)))}_removeUserInteractionListener(e){this.triggerEvents.forEach((t=>window.removeEventListener(t,e.userEventListener,e.eventOptions)))}triggerListener(){this._removeUserInteractionListener(this),"loading"===document.readyState?document.addEventListener("DOMContentLoaded",this._loadEverythingNow.bind(this)):this._loadEverythingNow()}async _loadEverythingNow(){this._delayEventListeners(),this._delayJQueryReady(this),this._handleDocumentWrite(),this._registerAllDelayedScripts(),this._preloadAllScripts(),await this._loadScriptsFromList(this.delayedScripts.normal),await this._loadScriptsFromList(this.delayedScripts.defer),await this._loadScriptsFromList(this.delayedScripts.async),await this._triggerDOMContentLoaded(),await this._triggerWindowLoad(),window.dispatchEvent(new Event("rocket-allScriptsLoaded"))}_registerAllDelayedScripts(){document.querySelectorAll("script[type=rocketlazyloadscript]").forEach((e=>{e.hasAttribute("src")?e.hasAttribute("async")&&!1!==e.async?this.delayedScripts.async.push(e):e.hasAttribute("defer")&&!1!==e.defer||"module"===e.getAttribute("data-rocket-type")?this.delayedScripts.defer.push(e):this.delayedScripts.normal.push(e):this.delayedScripts.normal.push(e)}))}async _transformScript(e){return await this._requestAnimFrame(),new Promise((t=>{const n=document.createElement("script");let r;[...e.attributes].forEach((e=>{let t=e.nodeName;"type"!==t&&("data-rocket-type"===t&&(t="type",r=e.nodeValue),n.setAttribute(t,e.nodeValue))})),e.hasAttribute("src")?(n.addEventListener("load",t),n.addEventListener("error",t)):(n.text=e.text,t()),e.parentNode.replaceChild(n,e)}))}async _loadScriptsFromList(e){const t=e.shift();return t?(await this._transformScript(t),this._loadScriptsFromList(e)):Promise.resolve()}_preloadAllScripts(){var e=document.createDocumentFragment();[...this.delayedScripts.normal,...this.delayedScripts.defer,...this.delayedScripts.async].forEach((t=>{const n=t.getAttribute("src");if(n){const t=document.createElement("link");t.href=n,t.rel="preload",t.as="script",e.appendChild(t)}})),document.head.appendChild(e)}_delayEventListeners(){let e={};function t(t,n){!function(t){function n(n){return e[t].eventsToRewrite.indexOf(n)>=0?"rocket-"+n:n}e[t]||(e[t]={originalFunctions:{add:t.addEventListener,remove:t.removeEventListener},eventsToRewrite:[]},t.addEventListener=function(){arguments[0]=n(arguments[0]),e[t].originalFunctions.add.apply(t,arguments)},t.removeEventListener=function(){arguments[0]=n(arguments[0]),e[t].originalFunctions.remove.apply(t,arguments)})}(t),e[t].eventsToRewrite.push(n)}function n(e,t){let n=e[t];Object.defineProperty(e,t,{get:()=>n||function(){},set(r){e["rocket"+t]=n=r}})}t(document,"DOMContentLoaded"),t(window,"DOMContentLoaded"),t(window,"load"),t(window,"pageshow"),t(document,"readystatechange"),n(document,"onreadystatechange"),n(window,"onload"),n(window,"onpageshow")}_delayJQueryReady(e){let t=window.jQuery;Object.defineProperty(window,"jQuery",{get:()=>t,set(n){if(n&&n.fn&&!e.allJQueries.includes(n)){n.fn.ready=n.fn.init.prototype.ready=function(t){e.domReadyFired?t.bind(document)(n):document.addEventListener("rocket-DOMContentLoaded",(()=>t.bind(document)(n)))};const t=n.fn.on;n.fn.on=n.fn.init.prototype.on=function(){if(this[0]===window){function e(e){return e.split(" ").map((e=>"load"===e||0===e.indexOf("load.")?"rocket-jquery-load":e)).join(" ")}"string"==typeof arguments[0]||arguments[0]instanceof String?arguments[0]=e(arguments[0]):"object"==typeof arguments[0]&&Object.keys(arguments[0]).forEach((t=>{delete Object.assign(arguments[0],{[e(t)]:arguments[0][t]})[t]}))}return t.apply(this,arguments),this},e.allJQueries.push(n)}t=n}})}async _triggerDOMContentLoaded(){this.domReadyFired=!0,await this._requestAnimFrame(),document.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._requestAnimFrame(),window.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._requestAnimFrame(),document.dispatchEvent(new Event("rocket-readystatechange")),await this._requestAnimFrame(),document.rocketonreadystatechange&&document.rocketonreadystatechange()}async _triggerWindowLoad(){await this._requestAnimFrame(),window.dispatchEvent(new Event("rocket-load")),await this._requestAnimFrame(),window.rocketonload&&window.rocketonload(),await this._requestAnimFrame(),this.allJQueries.forEach((e=>e(window).trigger("rocket-jquery-load"))),window.dispatchEvent(new Event("rocket-pageshow")),await this._requestAnimFrame(),window.rocketonpageshow&&window.rocketonpageshow()}_handleDocumentWrite(){const e=new Map;document.write=document.writeln=function(t){const n=document.currentScript,r=document.createRange(),i=n.parentElement;let o=e.get(n);void 0===o&&(o=n.nextSibling,e.set(n,o));const a=document.createDocumentFragment();r.setStart(a,0),a.appendChild(r.createContextualFragment(t)),i.insertBefore(a,o)}}async _requestAnimFrame(){return new Promise((e=>requestAnimationFrame(e)))}static run(){const e=new RocketLazyLoadScripts(["keydown","mousemove","touchmove","touchstart","touchend","wheel"]);e._addUserInteractionListener(e)}}RocketLazyLoadScripts.run();</script>
         
         <meta name="viewport" content="width=device-width">
         
@@ -29,15 +34,16 @@
 		<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
 
 	<!-- This site is optimized with the Yoast SEO plugin v18.3 - https://yoast.com/wordpress/plugins/seo/ -->
-	<title>JARKS CTC -  Software Training | Job Consulting Services</title><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Lato%3A300%2C400%2C700%2C900%2C300italic%2C400italic%2C700italic&amp;subset=latin%2Clatin-ext&amp;display=swap" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato%3A300%2C400%2C700%2C900%2C300italic%2C400italic%2C700italic&amp;subset=latin%2Clatin-ext&amp;display=swap" media="print" onload="this.media='all'" /><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato%3A300%2C400%2C700%2C900%2C300italic%2C400italic%2C700italic&amp;subset=latin%2Clatin-ext&amp;display=swap" /></noscript><link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;0,800;1,400;1,500;1,600;1,700&amp;display=swap" /><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;0,800;1,400;1,500;1,600;1,700&amp;display=swap" media="print" onload="this.media='all'" /><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;0,800;1,400;1,500;1,600;1,700&amp;display=swap" /></noscript>
-	<meta name="description" content="CONCAT connects service seekers and service providers with business consulting firms in India. It is a management consulting service by top firms." />
+	<title>JARKS CTC -  Software Training | Job Consulting Jobs</title>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Lato%3A300%2C400%2C700%2C900%2C300italic%2C400italic%2C700italic&amp;subset=latin%2Clatin-ext&amp;display=swap" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato%3A300%2C400%2C700%2C900%2C300italic%2C400italic%2C700italic&amp;subset=latin%2Clatin-ext&amp;display=swap" media="print" onload="this.media='all'" /><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato%3A300%2C400%2C700%2C900%2C300italic%2C400italic%2C700italic&amp;subset=latin%2Clatin-ext&amp;display=swap" /></noscript><link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;0,800;1,400;1,500;1,600;1,700&amp;display=swap" /><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;0,800;1,400;1,500;1,600;1,700&amp;display=swap" media="print" onload="this.media='all'" /><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;0,800;1,400;1,500;1,600;1,700&amp;display=swap" /></noscript>
+	<meta name="description" content="CONCAT connects Job seekers and Job providers with business consulting firms in India. It is a management consulting Job by top firms." />
 	<link rel="canonical" href="index.html" />
 	<meta property="og:locale" content="en_US" />
 	<meta property="og:type" content="website" />
-	<meta property="og:title" content="JARKS CTC -  Software Training | Job Consulting Services" />
-	<meta property="og:description" content="CONCAT connects service seekers and service providers with business consulting firms in India. It is a management consulting service by top firms." />
+	<meta property="og:title" content="JARKS CTC -  Software Training | Job Consulting Jobs" />
+	<meta property="og:description" content="CONCAT connects Job seekers and Job providers with business consulting firms in India. It is a management consulting Job by top firms." />
 	<meta property="og:url" content="index.html" />
-	<meta property="og:site_name" content="JARKSCTC" />
+	<meta property="og:site_name" content="Consulting" />
 	<meta property="article:publisher" content="https://www.facebook.com/JARKS CTC-100749261805054" />
 	<meta property="article:modified_time" content="2022-02-14T10:35:40+00:00" />
 	<meta property="og:image" content="wp-content/uploads/2021/08/logo.png" />
@@ -48,15 +54,15 @@
 	<meta name="twitter:image" content="wp-content/uploads/2021/08/logo.png" />
 	<meta name="twitter:label1" content="Est. reading time" />
 	<meta name="twitter:data1" content="7 minutes" />
-	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://JARKS CTC Private Limited/#organization","name":"Concat - Connect, Consult & Collaborate","url":"https://JARKS CTC Private Limited/","sameAs":["https://www.facebook.com/JARKS CTC-100749261805054"],"logo":{"@type":"ImageObject","@id":"https://JARKS CTC Private Limited/#logo","inLanguage":"en-US","url":"https://JARKS CTC Private Limited/wp-content/uploads/2021/08/logo.png","contentUrl":"https://JARKS CTC Private Limited/wp-content/uploads/2021/08/logo.png","width":300,"height":121,"caption":"Concat - Connect, Consult & Collaborate"},"image":{"@id":"https://JARKS CTC Private Limited/#logo"}},{"@type":"WebSite","@id":"https://JARKS CTC Private Limited/#website","url":"https://JARKS CTC Private Limited/","name":"JARKSCTC","description":"Business Consulting Firms in India","publisher":{"@id":"https://JARKS CTC Private Limited/#organization"},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://JARKS CTC Private Limited/?s={search_term_string}"},"query-input":"required name=search_term_string"}],"inLanguage":"en-US"},{"@type":"ImageObject","@id":"https://JARKS CTC Private Limited/#primaryimage","inLanguage":"en-US","url":"https://JARKS CTC Private Limited/wp-content/uploads/2021/08/logo.png","contentUrl":"https://JARKS CTC Private Limited/wp-content/uploads/2021/08/logo.png","width":300,"height":121},{"@type":"WebPage","@id":"https://JARKS CTC Private Limited/#webpage","url":"https://JARKS CTC Private Limited/","name":"JARKS CTC -  Software Training | Job Consulting Services","isPartOf":{"@id":"https://JARKS CTC Private Limited/#website"},"about":{"@id":"https://JARKS CTC Private Limited/#organization"},"primaryImageOfPage":{"@id":"https://JARKS CTC Private Limited/#primaryimage"},"datePublished":"2020-09-29T15:34:51+00:00","dateModified":"2022-02-14T10:35:40+00:00","description":"CONCAT connects service seekers and service providers with business consulting firms in India. It is a management consulting service by top firms.","breadcrumb":{"@id":"https://JARKS CTC Private Limited/#breadcrumb"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https://JARKS CTC Private Limited/"]}]},{"@type":"BreadcrumbList","@id":"https://JARKS CTC Private Limited/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home"}]}]}</script>
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://JARKS CTC Private Limited/#organization","name":"Concat - Connect, Consult & Collaborate","url":"https://JARKS CTC Private Limited/","sameAs":["https://www.facebook.com/JARKS CTC-100749261805054"],"logo":{"@type":"ImageObject","@id":"https://JARKS CTC Private Limited/#logo","inLanguage":"en-US","url":"https://JARKS CTC Private Limited/wp-content/uploads/2021/08/logo.png","contentUrl":"https://JARKS CTC Private Limited/wp-content/uploads/2021/08/logo.png","width":300,"height":121,"caption":"Concat - Connect, Consult & Collaborate"},"image":{"@id":"https://JARKS CTC Private Limited/#logo"}},{"@type":"WebSite","@id":"https://JARKS CTC Private Limited/#website","url":"https://JARKS CTC Private Limited/","name":"Consulting","description":"Business Consulting Firms in India","publisher":{"@id":"https://JARKS CTC Private Limited/#organization"},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://JARKS CTC Private Limited/?s={search_term_string}"},"query-input":"required name=search_term_string"}],"inLanguage":"en-US"},{"@type":"ImageObject","@id":"https://JARKS CTC Private Limited/#primaryimage","inLanguage":"en-US","url":"https://JARKS CTC Private Limited/wp-content/uploads/2021/08/logo.png","contentUrl":"https://JARKS CTC Private Limited/wp-content/uploads/2021/08/logo.png","width":300,"height":121},{"@type":"WebPage","@id":"https://JARKS CTC Private Limited/#webpage","url":"https://JARKS CTC Private Limited/","name":"JARKS CTC -  Software Training | Job Consulting Jobs","isPartOf":{"@id":"https://JARKS CTC Private Limited/#website"},"about":{"@id":"https://JARKS CTC Private Limited/#organization"},"primaryImageOfPage":{"@id":"https://JARKS CTC Private Limited/#primaryimage"},"datePublished":"2020-09-29T15:34:51+00:00","dateModified":"2022-02-14T10:35:40+00:00","description":"CONCAT connects Job seekers and Job providers with business consulting firms in India. It is a management consulting Job by top firms.","breadcrumb":{"@id":"https://JARKS CTC Private Limited/#breadcrumb"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https://JARKS CTC Private Limited/"]}]},{"@type":"BreadcrumbList","@id":"https://JARKS CTC Private Limited/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home"}]}]}</script>
 	<!-- / Yoast SEO plugin. -->
 
 
 <link rel='dns-prefetch' href='http://www.google.com/' />
 <link rel='dns-prefetch' href='http://fonts.googleapis.com/' />
 <link href='https://fonts.gstatic.com/' crossorigin rel='preconnect' />
-<link rel="alternate" type="application/rss+xml" title="JARKSCTC &raquo; Feed" href="feed/index.html" />
-<link rel="alternate" type="application/rss+xml" title="JARKSCTC &raquo; Comments Feed" href="comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="Consulting &raquo; Feed" href="feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="Consulting &raquo; Comments Feed" href="comments/feed/index.html" />
 <style type="text/css">
 img.wp-smiley,
 img.emoji {
@@ -135,7 +141,7 @@ img.emoji {
 <script type="application/ld+json">
 {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
+    "@type": "ProfessionalJob",
     "name": "JARKS CTC Private Limited",
     "image": "https://JARKS CTC Private Limited/wp-content/uploads/2021/08/logo.png.webp",
     "url": "https://JARKS CTC Private Limited/",
@@ -172,7 +178,7 @@ img.emoji {
         {
             "@type": "ContactPoint",
             "telephone": "+91-7842012468",
-            "contactType": "customer service",
+            "contactType": "customer Job",
             "email": "info@jarksctc.in",
             "areaServed": [
                 "IND"
@@ -191,62 +197,7 @@ img.emoji {
     ]
 }
 </script>
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "SiteNavigationElement",
-    "name": [
-        "Home",
-        "Company",
-        "Services",
-        "Financial Advisory",
-        "Sales, Distribution Setup",
-        "Legal and Secretarial",
-        "Marketing and  BI",
-        "Academic and  Content",
-        "Concierge Services",
-        "Human Resource Training and Development Process",
-        "Projects, Infra &#038; Logistics",
-        "Insurance and Wealth Mgt",
-        "IT Consulting Services and IT Technological Services",
-        "Customer Success",
-        "Social Sustainability",
-        "Package",
-        "Service Seeker",
-        "Consultant",
-        "Service Provider",
-        "Case Studies",
-        "Blog",
-        "Associates",
-        "Contact"
-    ],
-    "url": [
-        "/",
-        "about-us/index.html",
-        "services/index.html",
-        "financial-advisory/index.html",
-        "sales-distribution/index.html",
-        "legal-secretarial/index.html",
-        "marketing-bi/index.html",
-        "academic-content-2/index.html",
-        "concierge-services/index.html",
-        "human-resource-training/index.html",
-        "projects-infra-logistics/index.html",
-        "insurance-wealth-mgt/index.html",
-        "it-technology/index.html",
-        "customer-success/index.html",
-        "#",
-        "package/index.html",
-        "package/index.html#ServiceSeeker",
-        "package/index.html#serviceConsultant",
-        "package/index.html#serviceProvider",
-        "case-study/index.html",
-        "blog/index.html",
-        "associates/index.html",
-        "contact/index.html"
-    ]
-}
-</script>
+
 <script type="application/ld+json">
 {
     "@context": "https://schema.org",
@@ -263,11 +214,11 @@ img.emoji {
 <link rel="apple-touch-icon" href="wp-content/uploads/2021/09/cropped-logo-180x180.png" />
 <meta name="msapplication-TileImage" content="https://JARKS CTC Private Limited/wp-content/uploads/2021/09/cropped-logo-270x270.png" />
 		<style type="text/css" id="wp-custom-css">
-			#ServiceSeeker ol, #serviceProvider ol, #serviceConsultant ol {
+			#JobSeeker ol, #JobProvider ol, #JobConsultant ol {
     margin-left: 18px;
 	margin-bottom: 22px;
 }
-#ServiceSeeker ol li, #serviceProvider ol li, #serviceConsultant ol li {
+#JobSeeker ol li, #JobProvider ol li, #JobConsultant ol li {
     margin-bottom: 11px;
 }
 .page-id-64 .vc_gitem-zone {
@@ -281,7 +232,7 @@ img.emoji {
 .page-id-64 .vc_grid-item-mini.vc_clearfix {
     padding-bottom: 90px !important; 
 }
-#mobileShowServices{
+#mobileShowJobs{
 	display: none;
 }
 .slidesBannerCtrl h4 {
@@ -325,11 +276,11 @@ img.emoji {
 .vc_row.wpb_row.vc_row-fluid.projects-statistics {
     margin-bottom: -24px;
 }
-body .our-service .vc_custom_1600718898184 {
+body .our-Job .vc_custom_1600718898184 {
     margin-left: 0 !important;
     margin-right: 0 !important;
 }
-.our-service .item .box .icon img {
+.our-Job .item .box .icon img {
     max-height: 90px;
     transition: all 200ms ease 0s;
     padding-bottom:15px;
@@ -373,7 +324,7 @@ body .our-service .vc_custom_1600718898184 {
 }
 
 @media (max-width: 767.98px) {
-	#ServiceSeeker ol, #serviceProvider ol, #serviceConsultant ol {
+	#JobSeeker ol, #JobProvider ol, #JobConsultant ol {
     margin-left: 30px; 
 	}
 	.page-id-64 .vc_gitem-zone {
@@ -383,7 +334,7 @@ body .our-service .vc_custom_1600718898184 {
 	.page-id-64 .vc_gitem-post-data {
     min-height: auto !important; 
 	}
-	#mobileShowServices{
+	#mobileShowJobs{
 	display: block;
 }
 .slidesBannerCtrl p {
@@ -468,7 +419,7 @@ body .our-service .vc_custom_1600718898184 {
 .ytp-endscreen-content {
     display: none;
 }		</style>
-		<style type="text/css" data-type="vc_shortcodes-custom-css">.vc_custom_1601888364792{margin-top: -10px !important;}.vc_custom_1603208474908{background-color: #ededed !important;}.vc_custom_1603208474908{background-color: #ededed !important;}.vc_custom_1601888116626{padding-top: 35px !important;}.vc_custom_1613325702657{background-image: url(wp-content/uploads/2021/02/servicesPartners116991.jpg?id=1697) !important;}.vc_custom_1643364904873{margin-top: 84px !important;}.vc_custom_1600717741875{padding-right: 60px !important;padding-left: 60px !important;}.vc_custom_1600718898184{margin-right: 20px !important;margin-left: 20px !important;}.vc_custom_1603891077300{margin-top: 50px !important;margin-bottom: 50px !important;}.vc_custom_1603890159790{margin-top: 100px !important;margin-bottom: 100px !important;}.vc_custom_1601580373519{background-image: url(https://JARKS CTC Private Limited/wp-content/uploads/2020/10/bg-1.jpg?id=804) !important;background-position: center !important;background-repeat: no-repeat !important;background-size: cover !important;}.vc_custom_1601738391579{border-bottom-width: 30px !important;background-image: url(https://JARKSCTCors.com/wp-content/uploads/2020/10/bg-2.jpg?id=805) !important;background-position: center !important;background-repeat: no-repeat !important;background-size: cover !important;}.vc_custom_1601739977024{margin-bottom: -4px !important;}</style><noscript><style> .wpb_animate_when_almost_visible { opacity: 1; }</style></noscript><noscript><style id="rocket-lazyload-nojs-css">.rll-youtube-player, [data-lazy-src]{display:none !important;}</style></noscript>		<script type="application/ld+json">
+		<style type="text/css" data-type="vc_shortcodes-custom-css">.vc_custom_1601888364792{margin-top: -10px !important;}.vc_custom_1603208474908{background-color: #ededed !important;}.vc_custom_1603208474908{background-color: #ededed !important;}.vc_custom_1601888116626{padding-top: 35px !important;}.vc_custom_1613325702657{background-image: url(wp-content/uploads/2021/02/JobsPartners116991.jpg?id=1697) !important;}.vc_custom_1643364904873{margin-top: 84px !important;}.vc_custom_1600717741875{padding-right: 60px !important;padding-left: 60px !important;}.vc_custom_1600718898184{margin-right: 20px !important;margin-left: 20px !important;}.vc_custom_1603891077300{margin-top: 50px !important;margin-bottom: 50px !important;}.vc_custom_1603890159790{margin-top: 100px !important;margin-bottom: 100px !important;}.vc_custom_1601580373519{background-image: url(https://JARKS CTC Private Limited/wp-content/uploads/2020/10/bg-1.jpg?id=804) !important;background-position: center !important;background-repeat: no-repeat !important;background-size: cover !important;}.vc_custom_1601738391579{border-bottom-width: 30px !important;background-image: url(https://Consultingors.com/wp-content/uploads/2020/10/bg-2.jpg?id=805) !important;background-position: center !important;background-repeat: no-repeat !important;background-size: cover !important;}.vc_custom_1601739977024{margin-bottom: -4px !important;}</style><noscript><style> .wpb_animate_when_almost_visible { opacity: 1; }</style></noscript><noscript><style id="rocket-lazyload-nojs-css">.rll-youtube-player, [data-lazy-src]{display:none !important;}</style></noscript>		<script type="application/ld+json">
 {
     "@context": "http://schema.org",
     "@type": "LocalBusiness",
@@ -505,7 +456,7 @@ gtag('js', new Date());
 
 gtag('config', 'AW-441447513');
 </script>
-		<script type="application/ld+json"> {   "@context": "https://schema.org",   "@type": "VideoObject",   "name": " JARKSCTC - B2B marketplace | Empower all your business requirements",   "description": " JARKSCTC is a B2B marketplace intending to help business startups, MSMEs to large corporates on critical aspects of business. JARKSCTC is founded by the 3’Cs concept, namely capability, consistency and cultivation, and the approach revolves around the concept of shared value to the company, the environment, and the community.",   "thumbnailUrl": " http://i3.ytimg.com/vi/1HUOgwd5has/maxresdefault.jpg",   "uploadDate": "2020-11-17",   "duration": "PT1M28S",   "contentUrl": "https://youtu.be/1HUOgwd5has",   "embedUrl": "https://www.youtube.com/embed/1HUOgwd5has" } </script>
+		<script type="application/ld+json"> {   "@context": "https://schema.org",   "@type": "VideoObject",   "name": " Consulting - B2B marketplace | Empower all your business requirements",   "description": " Consulting is a B2B marketplace intending to help business startups, MSMEs to large corporates on critical aspects of business. Consulting is founded by the 3’Cs concept, namely capability, consistency and cultivation, and the approach revolves around the concept of shared value to the company, the environment, and the community.",   "thumbnailUrl": " http://i3.ytimg.com/vi/1HUOgwd5has/maxresdefault.jpg",   "uploadDate": "2020-11-17",   "duration": "PT1M28S",   "contentUrl": "https://youtu.be/1HUOgwd5has",   "embedUrl": "https://www.youtube.com/embed/1HUOgwd5has" } </script>
 		
 <!-- Google Tag Manager -->
 <script type="rocketlazyloadscript">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -523,7 +474,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	  "itemReviewed": {
 			"@id" : "https://JARKS CTC Private Limited/"
 			  },
-	  "reviewBody": "Thanks for offering excellent service of finding the best hr outsourcing companies in India. JARKS CTC team is highly professional.",
+	  "reviewBody": "Thanks for offering excellent Job of finding the best hr outsourcing companies in India. JARKS CTC team is highly professional.",
 	  "reviewRating":
 		{
 		"@type": "Rating",
@@ -554,7 +505,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	  "@type": "Rating",
 	  "author" : "K Sai Kumar",
 	  "datePublished": "2022-01-07",
-	  "reviewBody": "Thanks JARKS CTC team. you have done a great service professionally of startup consultants in Delhi.",
+	  "reviewBody": "Thanks JARKS CTC team. you have done a great Job professionally of startup consultants in Delhi.",
 	  "itemReviewed": {
 			"@id" : "https://JARKS CTC Private Limited/"
 			  },
@@ -571,7 +522,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	  "@type": "Rating",
 	  "author" : "Tanishka Khatri",
 	  "datePublished": "2022-01-11",
-	  "reviewBody": "Thanks for the great virtual HR services. Services of JARKS CTC are excellent.",
+	  "reviewBody": "Thanks for the great virtual HR Jobs. Jobs of JARKS CTC are excellent.",
 	  "itemReviewed": {
 			"@id" : "https://JARKS CTC Private Limited/"
 			  },
@@ -642,24 +593,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
       <div id="overlay"></div>
       <div id="mobile-menu">
-	    <ul id="menu-main-menu" class="mobile-menu"><li id="menu-item-966" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-966">
-			<a href="index.html" aria-current="page">Home</a></li>
-<li id="menu-item-319" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-319"><a href="about-us/index.html">Company</a></li>
-<li id="menu-item-526" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-526"><a href="services/index.html">Services</a>
+	    <ul id="menu-main-menu" class="mobile-menu"><li id="menu-item-966" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-966"><a href="index.html" aria-current="page">Home</a></li>
+<li id="menu-item-319" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-319">
+    <a href="about-us/index.html">Company</a></li>
+    <li id="menu-item-526" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-526">
+	<a href="../services/index.html">Services</a>
+
+</li>
+<li id="menu-item-479" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-479"><a href="package/index.html">Package</a>
 <ul class="sub-menu">
-	<li id="menu-item-1359" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1359"><a href="it-technology/index.html">IT Consulting Services and IT Technological Services</a></li>
+	<li id="menu-item-1151" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1151">
+        <a href="package/index.html#JobSeeker">Job Seeker</a></li>
+	<li id="menu-item-1153" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1153">
+        <a href="package/index.html#JobConsultant">Consultant</a></li>
+	<li id="menu-item-1154" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1154">
+        <a href="package/index.html#JobProvider">Job PROVIDER</a></li>
 </ul>
 </li>
-<li id="menu-item-506" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-506"><a href="case-study/index.html">Case Studies</a></li>
-<li id="menu-item-66" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-66"><a href="blog/index.html">Blog</a></li>
-<li id="menu-item-67" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-67"><a href="contact/index.html">Contact Us</a></li>
+<li id="menu-item-506" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-506">
+    <a href="case-study/index.html">Case Studies</a></li>
+<li id="menu-item-66" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-66">
+    <a href="blog/index.html">Blog</a></li>
+
+<li id="menu-item-67" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-67"><a href="contact/index.html">Contact</a></li>
 </ul>      </div>
       <div id="layout">
          <header id="fixed" class="header">
             <div class="container">
                <div class="row">
                   <div class="col-md-12">
-                     <div class="mm-toggle"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="menu" data-lazy-src="wp-content/themes/concat/images/menu.svg"><noscript><img src="wp-content/themes/concat/images/menu.svg" alt="menu"></noscript></div>
+                     <div class="mm-toggle">
+						<img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="menu" data-lazy-src="wp-content/themes/concat/images/menu.svg"><noscript><img src="wp-content/themes/concat/images/menu.svg" alt="menu"></noscript></div>
                      <div class="brand-logo">
                         <div class="logo"> <a href="index.html"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="logo" data-lazy-src="wp-content/uploads/2021/08/logo.png"><noscript><img src="wp-content/uploads/2021/08/logo.png" alt="logo"></noscript></a> </div>
                      </div>
@@ -676,17 +640,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                               <div class="container">
                                  <div class="row">
                                     <div class="col-md-12">
-                                       <ul id="menu-main-menu-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-966">
-										   <a href="index.html" aria-current="page">Home</a></li>
-<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-319"><a href="about-us/index.html">Company</a></li>
-<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-526"><a href="services/index.html">Services</a>
+                                       <ul id="menu-main-menu-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-966"><a href="index.html" aria-current="page">Home</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-319">
+    <a href="about-us/index.html">Company</a></li>
+    <li id="menu-item-1154" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1154">
+		<a href="../package/index.html#serviceProvider">Service </a></li>
+
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-479"><a href="package/index.html">Package</a>
 <ul class="sub-menu">
-	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1359"><a href="it-technology/index.html">IT Consulting Services and IT Technological Services</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1151">
+		<a href="package/index.html#JobSeeker">Job Seeker</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1153">
+		<a href="package/index.html#JobConsultant">Consultant</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1154">
+		<a href="package/index.html#JobProvider">Job provider</a></li>
 </ul>
 </li>
 <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-506"><a href="case-study/index.html">Case Studies</a></li>
 <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-66"><a href="blog/index.html">Blog</a></li>
-<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-67"><a href="contact/index.html">Contact Us</a></li>
+
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-67"><a href="contact/index.html">Contact</a></li>
 </ul>                                    </div>
                                  </div>
                               </div>
@@ -717,22 +691,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div id="metaslider_1231">
             <ul aria-live="polite" class="slides">
                 <li style="display: block; width: 100%;" class="slide-1232 ms-image"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201920%20800'%3E%3C/svg%3E" height="800" width="1920" alt="Depositphotos 387091064 xl 2015 scaled 1920x8001 1" class="slider-1231 slide-1232" title="Depositphotos 387091064 xl 2015 scaled 1920x8001 1" data-lazy-src="wp-content/uploads/2021/02/Depositphotos_387091064_xl-2015-scaled-1920x8001-1.jpg" /><noscript><img src="wp-content/uploads/2021/02/Depositphotos_387091064_xl-2015-scaled-1920x8001-1.jpg" height="800" width="1920" alt="Depositphotos 387091064 xl 2015 scaled 1920x8001 1" class="slider-1231 slide-1232" title="Depositphotos 387091064 xl 2015 scaled 1920x8001 1" /></noscript><div class="caption-wrap"><div class="caption"><h4>B2B marketplace | Empower all your business requirements </h4><h4></h4><h1>Connect, Consult &amp;  Collaborate </h1><p>A marketplace for Cross-Functional Business Outsourcing, Consulting,<br /> and Execution needs.</p><div class="action">
-            <a href="package/index.html#ServiceSeeker" class="btn btn-danger">Services Seekers <i class="fa fa-arrow-circle-right"></i></a>
-           <a href="package/index.html#serviceProvider" class="btn btn-primary">Services Provider <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="package/index.html#JobSeeker" class="btn btn-danger">Jobs Seekers <i class="fa fa-arrow-circle-right"></i></a>
+           <a href="package/index.html#JobProvider" class="btn btn-primary">Jobs Provider <i class="fa fa-arrow-circle-right"></i></a>
 		   <a class="connectUsBtn">Connect with us</a>
           </div></div></div></li>
-                <li style="display: none; width: 100%;" class="slide-2499 ms-image"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201920%20800'%3E%3C/svg%3E" height="800" width="1920" alt="" class="slider-1231 slide-2499" title="slidemain02" data-lazy-src="wp-content/uploads/2021/05/slidemain02.jpg" /><noscript><img src="wp-content/uploads/2021/05/slidemain02.jpg" height="800" width="1920" alt="" class="slider-1231 slide-2499" title="slidemain02" /></noscript><div class="caption-wrap"><div class="caption"><div class="slidesBannerCtrl">
-<h4>Outsourced Accounting Services Provide You the Ability to Focus More on Your Business</h4>
-<h2>Outsourced Accounting Services</h2>
+                <li style="display: none; width: 100%;" class="slide-2499 ms-image">
+                    <img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201920%20800'%3E%3C/svg%3E" height="800" width="1920" alt="" class="slider-1231 slide-2499" title="slidemain02" data-lazy-src="wp-content/uploads/2021/05/slidemain02.jpg" /><noscript><img src="wp-content/uploads/2021/05/slidemain02.jpg" height="800" width="1920" alt="" class="slider-1231 slide-2499" title="slidemain02" /></noscript><div class="caption-wrap"><div class="caption"><div class="slidesBannerCtrl">
+<h4>Outsourced Accounting Jobs Provide You the Ability to Focus More on Your Business</h4>
+<h2>Outsourced Accounting Jobs</h2>
 <p class="slidesphrase1">Our accounting experts are committed to delivering excellent accounting 
 solutions for all businesses.</p>
 <div class="actionCtrl">
 	<a class="connectUsBtn">Schedule a Consultation</a>
 </div>
 </div></div></div></li>
-                <li style="display: none; width: 100%;" class="slide-2514 ms-image"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201920%20800'%3E%3C/svg%3E" height="800" width="1920" alt="" class="slider-1231 slide-2514" title="sildemain03" data-lazy-src="wp-content/uploads/2021/05/sildemain03.jpg" /><noscript><img src="wp-content/uploads/2021/05/sildemain03.jpg" height="800" width="1920" alt="" class="slider-1231 slide-2514" title="sildemain03" /></noscript><div class="caption-wrap"><div class="caption"><div class="slidesBannerCtrl">
-<h4>Advanced Business Franchise Model Consultation &amp; Setup Services</h4>
-<h2>Franchise Consulting Services</h2>
+                <li style="display: none; width: 100%;" class="slide-2514 ms-image">
+                    <img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201920%20800'%3E%3C/svg%3E" height="800" width="1920" alt="" class="slider-1231 slide-2514" title="sildemain03" data-lazy-src="wp-content/uploads/2021/05/sildemain03.jpg" /><noscript><img src="wp-content/uploads/2021/05/sildemain03.jpg" height="800" width="1920" alt="" class="slider-1231 slide-2514" title="sildemain03" /></noscript><div class="caption-wrap"><div class="caption"><div class="slidesBannerCtrl">
+<h4>Advanced Business Franchise Model Consultation &amp; Setup Jobs</h4>
+<h2>Franchise Consulting Jobs</h2>
 <p class="slidesBannerphrase">We excel in franchising advocacy and process management.<br />
 Our advisers manage the entire franchising process to support your growth.</p>
 <div class="actionCtrl">
@@ -750,11 +726,11 @@ Our advisers manage the entire franchising process to support your growth.</p>
         <div class="col-lg-8 wow fadeInUp" data-wow-offset="10"data-wow-duration="1.5s">
         <h6>Keep Your Business Safe $ Ensure Hight Availability</h6>
           <h1>Simple, Intutive & Expertly Crafted</h1>
-          <p>We are expereinced professional who understand that it services is changing.
+          <p>We are expereinced professional who understand that it Jobs is changing.
 and are true partners who care about your success.</p>
           <div class="action">
-            <a href="#/" class="btn btn-danger">Services Seekers <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
-           <a href="#/" class="btn btn-primary">Services Provider <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+            <a href="#/" class="btn btn-danger">Jobs Seekers <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+           <a href="#/" class="btn btn-primary">Jobs Provider <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
           </div>
         </div>
       </div></div></div>
@@ -766,34 +742,9 @@ and are true partners who care about your success.</p>
 			
 		</div>
 	</div>
-</div></div></div></div></div></div></div></div><div class="vc_row wpb_row vc_row-fluid"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner"><div class="wpb_wrapper">    <div id="partners" class="owl-carousel owl-theme">
-							<div class="item"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="images" data-lazy-src="wp-content/uploads/2020/09/logo1-1.jpg"><noscript><img src="wp-content/uploads/2020/09/logo1-1.jpg" alt="images"></noscript></div>
-							<div class="item"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="images" data-lazy-src="wp-content/uploads/2020/09/logo3-1.jpg"><noscript><img src="wp-content/uploads/2020/09/logo3-1.jpg" alt="images"></noscript></div>
-							<div class="item"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="images" data-lazy-src="wp-content/uploads/2020/09/logo2-1.jpg"><noscript><img src="wp-content/uploads/2020/09/logo2-1.jpg" alt="images"></noscript></div>
-							<div class="item"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="images" data-lazy-src="wp-content/uploads/2021/07/logo-min2.png"><noscript><img src="wp-content/uploads/2021/07/logo-min2.png" alt="images"></noscript></div>
-							<div class="item"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="images" data-lazy-src="wp-content/uploads/2021/07/logo-2.png"><noscript><img src="wp-content/uploads/2021/07/logo-2.png" alt="images"></noscript></div>
-							<div class="item"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="images" data-lazy-src="wp-content/uploads/2021/07/logo-dark-1-1-new2.png"><noscript><img src="wp-content/uploads/2021/07/logo-dark-1-1-new2.png" alt="images"></noscript></div>
-							<div class="item"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="images" data-lazy-src="wp-content/uploads/2021/07/habilelabs-logo.png"><noscript><img src="wp-content/uploads/2021/07/habilelabs-logo.png" alt="images"></noscript></div>
-							<div class="item"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="images" data-lazy-src="wp-content/uploads/2021/07/procure-LOGO.png"><noscript><img src="wp-content/uploads/2021/07/procure-LOGO.png" alt="images"></noscript></div>
-							<div class="item"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="images" data-lazy-src="wp-content/uploads/2021/07/53mqWjqOzY.png"><noscript><img src="wp-content/uploads/2021/07/53mqWjqOzY.png" alt="images"></noscript></div>
-							<div class="item"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="images" data-lazy-src="wp-content/uploads/2021/07/RCSlogo.png"><noscript><img src="wp-content/uploads/2021/07/RCSlogo.png" alt="images"></noscript></div>
-							<div class="item"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="images" data-lazy-src="wp-content/uploads/2021/07/logo-3.png"><noscript><img src="wp-content/uploads/2021/07/logo-3.png" alt="images"></noscript></div>
-							<div class="item"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="images" data-lazy-src="wp-content/uploads/2021/07/logo-4.png"><noscript><img src="wp-content/uploads/2021/07/logo-4.png" alt="images"></noscript></div>
-							<div class="item"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="images" data-lazy-src="wp-content/uploads/2021/07/ANB-logo.png"><noscript><img src="wp-content/uploads/2021/07/ANB-logo.png" alt="images"></noscript></div>
-							<div class="item"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="images" data-lazy-src="wp-content/uploads/2021/07/mainlogos.jpg"><noscript><img src="wp-content/uploads/2021/07/mainlogos.jpg" alt="images"></noscript></div>
-							<div class="item"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="images" data-lazy-src="wp-content/uploads/2021/07/Untitled_design-removebg-preview.png"><noscript><img src="wp-content/uploads/2021/07/Untitled_design-removebg-preview.png" alt="images"></noscript></div>
-							<div class="item"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="images" data-lazy-src="wp-content/uploads/2021/07/black-bg-logo.jpg"><noscript><img src="wp-content/uploads/2021/07/black-bg-logo.jpg" alt="images"></noscript></div>
-							<div class="item"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="images" data-lazy-src="wp-content/uploads/2021/07/Biba-logo-1.png"><noscript><img src="wp-content/uploads/2021/07/Biba-logo-1.png" alt="images"></noscript></div>
-							<div class="item"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="images" data-lazy-src="wp-content/uploads/2021/07/Untitled-2-1.jpg"><noscript><img src="wp-content/uploads/2021/07/Untitled-2-1.jpg" alt="images"></noscript></div>
-							<div class="item"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="images" data-lazy-src="wp-content/uploads/2021/08/Perfect-group-logo-1.png"><noscript><img src="wp-content/uploads/2021/08/Perfect-group-logo-1.png" alt="images"></noscript></div>
-							<div class="item"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="images" data-lazy-src="wp-content/uploads/2021/07/image011.png"><noscript><img src="wp-content/uploads/2021/07/image011.png" alt="images"></noscript></div>
-							<div class="item"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="images" data-lazy-src="wp-content/uploads/2021/07/image013.jpg"><noscript><img src="wp-content/uploads/2021/07/image013.jpg" alt="images"></noscript></div>
-							<div class="item"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="images" data-lazy-src="wp-content/uploads/2021/07/image017.jpg"><noscript><img src="wp-content/uploads/2021/07/image017.jpg" alt="images"></noscript></div>
-							<div class="item"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="images" data-lazy-src="wp-content/uploads/2021/07/gw.jpg"><noscript><img src="wp-content/uploads/2021/07/gw.jpg" alt="images"></noscript></div>
-							<div class="item"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="images" data-lazy-src="wp-content/uploads/2021/07/logo.png"><noscript><img src="wp-content/uploads/2021/07/logo.png" alt="images"></noscript></div>
-			 
-	</div>
-	</div></div></div></div><div class="vc_row wpb_row vc_row-fluid about-section ccTxt vc_custom_1601888364792"><div class="wpb_column vc_column_container vc_col-sm-6"><div class="vc_column-inner"><div class="wpb_wrapper"><h3 style="text-align: left" class="vc_custom_heading" >At JARKSCTC, our business is helping your business succeed. JARKS CTC collaborate with both the service seekers and the service providers by providing a powerful support system.</h3>
+</div></div></div></div></div></div></div></div><div class="vc_row wpb_row vc_row-fluid">
+
+	</div></div></div></div><div class="vc_row wpb_row vc_row-fluid about-section ccTxt vc_custom_1601888364792"><div class="wpb_column vc_column_container vc_col-sm-6"><div class="vc_column-inner"><div class="wpb_wrapper"><h3 style="text-align: left" class="vc_custom_heading" >At Consulting, our business is helping your business succeed. JARKS CTC collaborate with both the Job seekers and the Job providers by providing a powerful support system.</h3>
 	<div class="wpb_text_column wpb_content_element " >
 		<div class="wpb_wrapper">
 			<p><div class="rll-youtube-player" data-src="https://www.youtube.com/embed/iDTwGIEPYKw" data-id="iDTwGIEPYKw" data-query="rel=0"></div><noscript>
@@ -801,31 +752,25 @@ and are true partners who care about your success.</p>
 
 		</div>
 	</div>
-</div></div></div><div class="abtJARKSCTCMobCtrl wpb_column vc_column_container vc_col-sm-6"><div class="vc_column-inner"><div class="wpb_wrapper">
+</div></div></div><div class="abtConsultingMobCtrl wpb_column vc_column_container vc_col-sm-6"><div class="vc_column-inner"><div class="wpb_wrapper">
 	<div class="wpb_text_column wpb_content_element " >
 		<div class="wpb_wrapper">
-			<p>JARKSCTC is a leading B2B marketplace for Cross-Functional Business Outsourcing, Consulting, and Execution needs through the platform <a href="index.html" target="_blank" rel="noopener" data-saferedirecturl="https://www.google.com/url?q=https://JARKS CTC Private Limited&amp;source=gmail&amp;ust=1630568039226000&amp;usg=AFQjCNEJUJFkOauuGsgtUKswzUo7n1cZeQ">JARKS CTC Private Limited</a>.</p>
-<p>We understand business &amp; curate tailor-made solutions by weaving together the right strategy, right execution partner, and right technology within a budget and timelines. We own end-to-end delivery, thereby reducing the risk and liability, promising efficient and on-time delivery. The JARKSCTC stamp ensures transparency, trust &amp; commitment.</p>
+			<p>Consulting is a leading B2B marketplace for Cross-Functional Business Outsourcing, Consulting, and Execution needs through the platform <a href="index.html" target="_blank" rel="noopener" data-saferedirecturl="https://www.google.com/url?q=https://JARKS CTC Private Limited&amp;source=gmail&amp;ust=1630568039226000&amp;usg=AFQjCNEJUJFkOauuGsgtUKswzUo7n1cZeQ">JARKS CTC Private Limited</a>.</p>
+<p>We understand business &amp; curate tailor-made solutions by weaving together the right strategy, right execution partner, and right technology within a budget and timelines. We own end-to-end delivery, thereby reducing the risk and liability, promising efficient and on-time delivery. The Consulting stamp ensures transparency, trust &amp; commitment.</p>
 <p>Our Practice Leaders across IT, Finance, HR, Legal, Sales, Marketing, Customer Success, Content, L&amp;D, Academics, and Insurance are Industry stalwarts in their domains and bring a rich experience of 25+ years each.</p>
-<p>Backed by a robust platform offering 12 services verticals, 350 unique services, 500+ execution partners, and 100+ subject-matter expert consultants, we own the strategy, delivery &amp; governance.</p>
-<p>If you are a business consulting firm in India providing business consulting services or a management consulting firm providing solutions to solve modern-day problems? We are your one-stop shop for all business solutions.</p>
+<p>Backed by a robust platform offering 12 Jobs verticals, 350 unique Jobs, 500+ execution partners, and 100+ subject-matter expert consultants, we own the strategy, delivery &amp; governance.</p>
+<p>If you are a business consulting firm in India providing business consulting Jobs or a management consulting firm providing solutions to solve modern-day problems? We are your one-stop shop for all business solutions.</p>
 <h4>Connect | Consult | Collaborate</h4>
 <p><a href="contact/index.html">Signup Now for Best Results </a></p>
 
 		</div>
 	</div>
 </div></div></div></div><div data-vc-full-width="true" data-vc-full-width-init="false" data-vc-stretch-content="true" class="vc_row wpb_row vc_row-fluid vc_custom_1603208474908 vc_row-has-fill vc_row-no-padding"><div class="wpb_column vc_column_container vc_col-sm-12 vc_hidden-xs"><div class="vc_column-inner"><div class="wpb_wrapper">
-	<div  class="wpb_single_image wpb_content_element vc_align_center">
+	
+</div></div></div></div><div class="vc_row-full-width vc_clearfix"></div><div data-vc-full-width="true" data-vc-full-width-init="false" data-vc-stretch-content="true" class="vc_row wpb_row vc_row-fluid vc_custom_1603208474908 vc_row-has-fill vc_row-no-padding"><div class="wpb_column vc_column_container vc_col-sm-12 vc_hidden-lg vc_hidden-md vc_hidden-sm"><div class="vc_column-inner"><div class="wpb_wrapper">	<div  class="wpb_single_image wpb_content_element vc_align_center">
 		
 		<figure class="wpb_wrapper vc_figure">
-			<div class="vc_single_image-wrapper   vc_box_border_grey"><img width="1300" height="670" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201300%20670'%3E%3C/svg%3E" class="vc_single_image-img attachment-full" alt="HomePage Graphics new" data-lazy-srcset="https://JARKS CTC Private Limited/wp-content/uploads/2021/08/HomePage-Graphics-new1.jpg 1300w, https://JARKS CTC Private Limited/wp-content/uploads/2021/08/HomePage-Graphics-new1-300x155.jpg 300w, https://JARKS CTC Private Limited/wp-content/uploads/2021/08/HomePage-Graphics-new1-1024x528.jpg 1024w, https://JARKS CTC Private Limited/wp-content/uploads/2021/08/HomePage-Graphics-new1-768x396.jpg 768w" data-lazy-sizes="(max-width: 1300px) 100vw, 1300px" data-lazy-src="wp-content/uploads/2021/08/HomePage-Graphics-new1.jpg" /><noscript><img width="1300" height="670" src="wp-content/uploads/2021/08/HomePage-Graphics-new1.jpg" class="vc_single_image-img attachment-full" alt="HomePage Graphics new" srcset="https://JARKS CTC Private Limited/wp-content/uploads/2021/08/HomePage-Graphics-new1.jpg 1300w, https://JARKS CTC Private Limited/wp-content/uploads/2021/08/HomePage-Graphics-new1-300x155.jpg 300w, https://JARKS CTC Private Limited/wp-content/uploads/2021/08/HomePage-Graphics-new1-1024x528.jpg 1024w, https://JARKS CTC Private Limited/wp-content/uploads/2021/08/HomePage-Graphics-new1-768x396.jpg 768w" sizes="(max-width: 1300px) 100vw, 1300px" /></noscript></div>
-		</figure>
-	</div>
-</div></div></div></div><div class="vc_row-full-width vc_clearfix"></div><div data-vc-full-width="true" data-vc-full-width-init="false" data-vc-stretch-content="true" class="vc_row wpb_row vc_row-fluid vc_custom_1603208474908 vc_row-has-fill vc_row-no-padding"><div class="wpb_column vc_column_container vc_col-sm-12 vc_hidden-lg vc_hidden-md vc_hidden-sm"><div class="vc_column-inner"><div class="wpb_wrapper">
-	<div  class="wpb_single_image wpb_content_element vc_align_center">
-		
-		<figure class="wpb_wrapper vc_figure">
-			<div class="vc_single_image-wrapper   vc_box_border_grey"><img width="738" height="2560" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20738%202560'%3E%3C/svg%3E" class="vc_single_image-img attachment-full" alt="mobConcatService new scaled" data-lazy-srcset="https://JARKS CTC Private Limited/wp-content/uploads/2020/10/mobConcatService-new-scaled.jpg 738w, https://JARKS CTC Private Limited/wp-content/uploads/2020/10/mobConcatService-new-295x1024.jpg 295w, https://JARKS CTC Private Limited/wp-content/uploads/2020/10/mobConcatService-new-443x1536.jpg 443w" data-lazy-sizes="(max-width: 738px) 100vw, 738px" data-lazy-src="wp-content/uploads/2020/10/mobConcatService-new-scaled.jpg" /><noscript><img width="738" height="2560" src="wp-content/uploads/2020/10/mobConcatService-new-scaled.jpg" class="vc_single_image-img attachment-full" alt="mobConcatService new scaled" srcset="https://JARKS CTC Private Limited/wp-content/uploads/2020/10/mobConcatService-new-scaled.jpg 738w, https://JARKS CTC Private Limited/wp-content/uploads/2020/10/mobConcatService-new-295x1024.jpg 295w, https://JARKS CTC Private Limited/wp-content/uploads/2020/10/mobConcatService-new-443x1536.jpg 443w" sizes="(max-width: 738px) 100vw, 738px" /></noscript></div>
+			<div class="vc_single_image-wrapper   vc_box_border_grey"><img width="738" height="2560" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20738%202560'%3E%3C/svg%3E" class="vc_single_image-img attachment-full" alt="mobConcatJob new scaled" data-lazy-srcset="https://JARKS CTC Private Limited/wp-content/uploads/2020/10/mobConcatJob-new-scaled.jpg 738w, https://JARKS CTC Private Limited/wp-content/uploads/2020/10/mobConcatJob-new-295x1024.jpg 295w, https://JARKS CTC Private Limited/wp-content/uploads/2020/10/mobConcatJob-new-443x1536.jpg 443w" data-lazy-sizes="(max-width: 738px) 100vw, 738px" data-lazy-src="wp-content/uploads/2020/10/mobConcatJob-new-scaled.jpg" /><noscript><img width="738" height="2560" src="wp-content/uploads/2020/10/mobConcatJob-new-scaled.jpg" class="vc_single_image-img attachment-full" alt="mobConcatJob new scaled" srcset="https://JARKS CTC Private Limited/wp-content/uploads/2020/10/mobConcatJob-new-scaled.jpg 738w, https://JARKS CTC Private Limited/wp-content/uploads/2020/10/mobConcatJob-new-295x1024.jpg 295w, https://JARKS CTC Private Limited/wp-content/uploads/2020/10/mobConcatJob-new-443x1536.jpg 443w" sizes="(max-width: 738px) 100vw, 738px" /></noscript></div>
 		</figure>
 	</div>
 </div></div></div></div><div class="vc_row-full-width vc_clearfix"></div><div data-vc-full-width="true" data-vc-full-width-init="false" data-vc-stretch-content="true" class="vc_row wpb_row vc_row-fluid slider-wraper vc_row-no-padding"><div class="operate-slider wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner"><div class="wpb_wrapper">
@@ -849,7 +794,7 @@ and are true partners who care about your success.</p>
 	<div class="wpb_text_column wpb_content_element  item-img" >
 		<div class="wpb_wrapper">
 			<p style="text-align: center;"><img class="alignnone wp-image-76 size-full" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20235%20214'%3E%3C/svg%3E" alt="" width="235" height="214" data-lazy-src="wp-content/uploads/2020/09/img1.png" /><noscript><img class="alignnone wp-image-76 size-full" src="wp-content/uploads/2020/09/img1.png" alt="" width="235" height="214" /></noscript></p>
-<h5 style="text-align: center;"><a href="#">Services Seeker</a></h5>
+<h5 style="text-align: center;"><a href="#">Jobs Seeker</a></h5>
 
 		</div>
 	</div>
@@ -864,7 +809,7 @@ and are true partners who care about your success.</p>
 	<div class="wpb_text_column wpb_content_element  item-img" >
 		<div class="wpb_wrapper">
 			<p style="text-align: center;"><img class="alignnone wp-image-83 size-full" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20235%20236'%3E%3C/svg%3E" alt="" width="235" height="236" data-lazy-srcset="https://JARKS CTC Private Limited/wp-content/uploads/2020/09/img2.png 235w, https://JARKS CTC Private Limited/wp-content/uploads/2020/09/img2-150x150.png 150w" data-lazy-sizes="(max-width: 235px) 100vw, 235px" data-lazy-src="wp-content/uploads/2020/09/img2.png" /><noscript><img class="alignnone wp-image-83 size-full" src="wp-content/uploads/2020/09/img2.png" alt="" width="235" height="236" srcset="https://JARKS CTC Private Limited/wp-content/uploads/2020/09/img2.png 235w, https://JARKS CTC Private Limited/wp-content/uploads/2020/09/img2-150x150.png 150w" sizes="(max-width: 235px) 100vw, 235px" /></noscript></p>
-<h5 style="text-align: center;"><a href="#">JARKSCTC</a></h5>
+<h5 style="text-align: center;"><a href="#">Consulting</a></h5>
 
 		</div>
 	</div>
@@ -879,126 +824,38 @@ and are true partners who care about your success.</p>
 	<div class="wpb_text_column wpb_content_element  item-img" >
 		<div class="wpb_wrapper">
 			<p style="text-align: center;"><img class="alignnone wp-image-84 size-full" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20235%20243'%3E%3C/svg%3E" alt="" width="235" height="243" data-lazy-src="wp-content/uploads/2020/09/img3.png" /><noscript><img class="alignnone wp-image-84 size-full" src="wp-content/uploads/2020/09/img3.png" alt="" width="235" height="243" /></noscript></p>
-<h5 style="text-align: center;"><a href="#">Services Provider</a></h5>
+<h5 style="text-align: center;"><a href="#">Jobs Provider</a></h5>
 
 		</div>
 	</div>
-</div></div></div></div></div></div></div></div><div class="vc_row-full-width vc_clearfix"></div><div class="vc_row wpb_row vc_row-fluid our-service"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner"><div class="wpb_wrapper">
+</div></div></div></div></div></div></div></div><div class="vc_row-full-width vc_clearfix"></div><div class="vc_row wpb_row vc_row-fluid our-Job"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner"><div class="wpb_wrapper">
 	<div class="wpb_text_column wpb_content_element  heading" >
 		<div class="wpb_wrapper">
-			<h2 style="text-align: center;">B2B Marketplace | JARKSCTC Services Portfolio</h2>
-<p style="text-align: center;">JARKSCTC offers a wide range of service portfolio consisting of 12 key verticals and 350 plus unique services across Information Technology, Finance, Legal &amp; Secretarial, HR &amp; Trainings, Sales &amp; Distribution, Marketing, Customer excellence, Projects, Infra, Admin, Logistics, Content &amp; academics, Concierge, Insurance &amp; Investment.</p>
+			<h2 style="text-align: center;">B2B Marketplace | Consulting Jobs Portfolio</h2>
+<p style="text-align: center;">Consulting offers a wide range of Job portfolio consisting of 12 key verticals and 350 plus unique Jobs across Information <br>Technology, Finance, Legal &amp; Secretarial, HR &amp; Trainings, Sales &amp; Distribution, Marketing, Customer excellence, Projects, Infra, Admin, Logistics, Content &amp; academics, Concierge, Insurance &amp; Investment.</p>
 
 		</div>
 	</div>
-<div class="vc_row wpb_row vc_inner vc_row-fluid item widthXCtrlMob"><div class="wpb_column vc_column_container vc_col-sm-3"><div class="vc_column-inner"><div class="wpb_wrapper">	<div class="our-service item box">
-   <div class="icon">
-    				<img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="images" data-lazy-src="wp-content/uploads/2020/09/icon7.png"><noscript><img src="wp-content/uploads/2020/09/icon7.png" alt="images"></noscript>
-		    </div>
-    <h4 style="text-align: center;"><a href="#/">IT &amp; Technology</a></h4>
-    <div class="action" style="text-align: center;">
-        <a class="btn btn-light" href="it-technology/index.html">Read More</a>
-    </div>
-</div>
-		</div></div></div><div class="wpb_column vc_column_container vc_col-sm-3"><div class="vc_column-inner vc_custom_1600718898184"><div class="wpb_wrapper">	<div class="our-service item box">
-   <div class="icon">
-    				<img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="images" data-lazy-src="wp-content/uploads/2020/10/HR-Hover-Icon.png"><noscript><img src="wp-content/uploads/2020/10/HR-Hover-Icon.png" alt="images"></noscript>
-		    </div>
-    <h4 style="text-align: center;"><a href="#/">Human Resource &amp; Training</a></h4>
-    <div class="action" style="text-align: center;">
-        <a class="btn btn-light" href="human-resource-training/index.html">Read More</a>
-    </div>
-</div>
-		</div></div></div><div class="wpb_column vc_column_container vc_col-sm-3"><div class="vc_column-inner"><div class="wpb_wrapper">	<div class="our-service item box">
-   <div class="icon">
-    				<img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="images" data-lazy-src="wp-content/uploads/2020/10/Financial-Advisor-Icon.png"><noscript><img src="wp-content/uploads/2020/10/Financial-Advisor-Icon.png" alt="images"></noscript>
-		    </div>
-    <h4 style="text-align: center;"><a href="#/">Financial Advisory</a></h4>
-    <div class="action" style="text-align: center;">
-        <a class="btn btn-light" href="financial-advisory/index.html">Read More</a>
-    </div>
-</div>
-		</div></div></div><div class="wpb_column vc_column_container vc_col-sm-3"><div class="vc_column-inner"><div class="wpb_wrapper">	<div class="our-service item box">
-   <div class="icon">
-    				<img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="images" data-lazy-src="wp-content/uploads/2020/09/icon5.png"><noscript><img src="wp-content/uploads/2020/09/icon5.png" alt="images"></noscript>
-		    </div>
-    <h4 style="text-align: center;"><a href="#/">Legal &amp; Secretarial</a></h4>
-    <div class="action" style="text-align: center;">
-        <a class="btn btn-light" href="legal-secretarial/index.html">Read More</a>
-    </div>
-</div>
-		</div></div></div></div><div class="vc_row wpb_row vc_inner vc_row-fluid item"><div class="wpb_column vc_column_container vc_col-sm-3"><div class="vc_column-inner"><div class="wpb_wrapper">
-	<div class="wpb_text_column wpb_content_element  box" >
-		<div class="wpb_wrapper">
-			<div class="icon"><img class="aligncenter wp-image-90 size-full" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20106%2092'%3E%3C/svg%3E" alt="icon" width="106" height="92" data-lazy-src="wp-content/uploads/2020/09/icon3.png" /><noscript><img class="aligncenter wp-image-90 size-full" src="wp-content/uploads/2020/09/icon3.png" alt="icon" width="106" height="92" /></noscript></div>
-<h4 style="text-align: center;"><a href="sales-distribution/index.html">Sales, Distribution Setup</a></h4>
-<div class="action" style="text-align: center;"><a class="btn btn-light" href="sales-distribution/index.html">Read More</a></div>
 
-		</div>
+
+
+
+		</div></div></div></div>
+></div></div></div>
+<div class="wpb_column vc_column_container vc_col-sm-3"><div class="vc_column-inner"><div class="wpb_wrapper">
+	<div class="wpb_text_column wpb_content_element  box" >
+	
+
+</div></div></div><div class="wpb_column vc_column_container vc_col-sm-3"><div class="vc_column-inner"><div class="wpb_wrapper">
+	<div class="wpb_text_column wpb_content_element  box" >
+		
 	</div>
 </div></div></div><div class="wpb_column vc_column_container vc_col-sm-3"><div class="vc_column-inner"><div class="wpb_wrapper">
 	<div class="wpb_text_column wpb_content_element  box" >
-		<div class="wpb_wrapper">
-			<div class="icon"><img class="aligncenter wp-image-90 size-full" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20106%2092'%3E%3C/svg%3E" alt="" width="106" height="92" data-lazy-src="wp-content/uploads/2022/01/Concat-icon-marketing.png" /><noscript><img class="aligncenter wp-image-90 size-full" src="wp-content/uploads/2022/01/Concat-icon-marketing.png" alt="" width="106" height="92" /></noscript></div>
-<h4 style="text-align: center;"><a href="customer-success/index.html">Marketing And BI</a></h4>
-<div class="action" style="text-align: center;"><a class="btn btn-light" href="marketing-bi/index.html">Read More</a></div>
-
-		</div>
+	
 	</div>
 </div></div></div><div class="wpb_column vc_column_container vc_col-sm-3"><div class="vc_column-inner"><div class="wpb_wrapper">
-	<div class="wpb_text_column wpb_content_element  box" >
-		<div class="wpb_wrapper">
-			<div class="icon"><img class="aligncenter wp-image-90 size-full" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20106%2092'%3E%3C/svg%3E" alt="" width="106" height="92" data-lazy-src="wp-content/uploads/2020/09/icon4.png" /><noscript><img class="aligncenter wp-image-90 size-full" src="wp-content/uploads/2020/09/icon4.png" alt="" width="106" height="92" /></noscript></div>
-<h4 style="text-align: center;"><a href="customer-success/index.html">Customer Success</a></h4>
-<div class="action" style="text-align: center;"><a class="btn btn-light" href="customer-success/index.html">Read More</a></div>
-
-		</div>
-	</div>
-</div></div></div><div class="wpb_column vc_column_container vc_col-sm-3"><div class="vc_column-inner"><div class="wpb_wrapper">
-	<div class="wpb_text_column wpb_content_element  box" >
-		<div class="wpb_wrapper">
-			<div class="icon"><img class="aligncenter wp-image-90 size-full" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20106%2092'%3E%3C/svg%3E" alt="" width="106" height="92" data-lazy-src="wp-content/uploads/2020/09/icon6.png" /><noscript><img class="aligncenter wp-image-90 size-full" src="wp-content/uploads/2020/09/icon6.png" alt="" width="106" height="92" /></noscript></div>
-<h4 style="text-align: center;"><a href="academic-content/index.html">Academic &amp; Content</a></h4>
-<div class="action" style="text-align: center;"><a class="btn btn-light" href="academic-content/index.html">Read More</a></div>
-
-		</div>
-	</div>
-</div></div></div></div><div class="vc_row wpb_row vc_inner vc_row-fluid item"><div class="wpb_column vc_column_container vc_col-sm-3"><div class="vc_column-inner"><div class="wpb_wrapper">
-	<div class="wpb_text_column wpb_content_element  box" >
-		<div class="wpb_wrapper">
-			<div class="icon"><img class="aligncenter wp-image-90 size-full" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20106%2092'%3E%3C/svg%3E" alt="projects-infra-logistics" width="106" height="92" data-lazy-src="wp-content/uploads/2020/09/icon10.png" /><noscript><img class="aligncenter wp-image-90 size-full" src="wp-content/uploads/2020/09/icon10.png" alt="projects-infra-logistics" width="106" height="92" /></noscript></div>
-<h4 style="text-align: center;"><a href="infra-admin-ea-logistics/index.html">Projects, Infra &amp; Logistics</a></h4>
-<div class="action" style="text-align: center;"><a class="btn btn-light" href="projects-infra-logistics/index.html">Read More</a></div>
-
-		</div>
-	</div>
-</div></div></div><div class="wpb_column vc_column_container vc_col-sm-3"><div class="vc_column-inner"><div class="wpb_wrapper">
-	<div class="wpb_text_column wpb_content_element  box" >
-		<div class="wpb_wrapper">
-			<div class="icon"><img class="aligncenter wp-image-90 size-full" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20106%2092'%3E%3C/svg%3E" alt="" width="106" height="92" data-lazy-src="wp-content/uploads/2020/09/icon11.png" /><noscript><img class="aligncenter wp-image-90 size-full" src="wp-content/uploads/2020/09/icon11.png" alt="" width="106" height="92" /></noscript></div>
-<h4 style="text-align: center;"><a href="concierge-services/index.html">Concierge Services</a></h4>
-<div class="action" style="text-align: center;"><a class="btn btn-light" href="concierge-services/index.html">Read More</a></div>
-
-		</div>
-	</div>
-</div></div></div><div class="wpb_column vc_column_container vc_col-sm-3"><div class="vc_column-inner"><div class="wpb_wrapper">
-	<div class="wpb_text_column wpb_content_element  box" >
-		<div class="wpb_wrapper">
-			<div class="icon"><img class="aligncenter wp-image-90 size-full" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20106%2092'%3E%3C/svg%3E" alt="" width="106" height="92" data-lazy-src="wp-content/uploads/2020/09/icon12.png" /><noscript><img class="aligncenter wp-image-90 size-full" src="wp-content/uploads/2020/09/icon12.png" alt="" width="106" height="92" /></noscript></div>
-<h4 style="text-align: center;"><a href="insurance-wealth-mgt/index.html">Insurance &amp; Wealth Mgt</a></h4>
-<div class="action" style="text-align: center;"><a class="btn btn-light" href="insurance-wealth-mgt/index.html">Read More</a></div>
-
-		</div>
-	</div>
-</div></div></div><div class="wpb_column vc_column_container vc_col-sm-3"><div class="vc_column-inner"><div class="wpb_wrapper">
-	<div class="wpb_text_column wpb_content_element  box" >
-		<div class="wpb_wrapper">
-			<div class="icon"><img class="aligncenter wp-image-90 size-full" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20106%2092'%3E%3C/svg%3E" alt="Social Sustainability" width="106" height="92" data-lazy-src="wp-content/uploads/2021/08/Social-sustainbility1.png" /><noscript><img class="aligncenter wp-image-90 size-full" src="wp-content/uploads/2021/08/Social-sustainbility1.png" alt="Social Sustainability" width="106" height="92" /></noscript></div>
-<h4 style="text-align: center;"><a href="#">Social Sustainability</a></h4>
-<div class="action" style="text-align: center;"><a class="btn btn-light" href="#">Read More</a></div>
-
-		</div>
-	</div>
+	
 </div></div></div></div></div></div></div></div><div class="vc_row wpb_row vc_row-fluid case-studies vc_custom_1601888116626"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner"><div class="wpb_wrapper"><div class="vc_row wpb_row vc_inner vc_row-fluid"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner"><div class="wpb_wrapper"><h2 style="text-align: center" class="vc_custom_heading" >Latest Case Studies</h2></div></div></div></div><div class="vc_row wpb_row vc_inner vc_row-fluid"><div class="wpb_column vc_column_container vc_col-sm-4"><div class="vc_column-inner"><div class="wpb_wrapper">
 	<div class="wpb_raw_code wpb_content_element wpb_raw_html" >
 		<div class="wpb_wrapper">
@@ -1011,8 +868,8 @@ and are true partners who care about your success.</p>
 </future>
 <div class="content">
 <!--<h6>Consulting Security</h6>-->
-<h4>From 1 Small Store in Juhu, Mumbai to more than 100 Parlors across India | Story Of Naturals Ice Creams</h4>
-There are a few brands that have revolutionized different industries in India over the years, be it in terms of quality, supply, or in terms of variety. They have given cold feet to their competitors, have brought in challenges, and simultaneously made a name for themselves. One such brand in...                        </div>
+<h4>Payroll and CRM Business Solutioning</h4>
+One of Consulting’s clients is a $2 Bn manufacturing MNC having their presence at multiple India locations. They were facing challenges in their blue-collar employee payment process, as their legacy system and processes ran for 20+ years. Their current team referred to their process as the most optimized one; however..                        </div>
 </div>
 <div class="action">
 <a href="case-studies/from-1-small-store-in-juhumumbai-to-more-than-100-parlors-across-india-story-of-naturals-ice-creams/index.html" class="btn btn-primary">Read More</a>
@@ -1033,7 +890,7 @@ There are a few brands that have revolutionized different industries in India ov
 <div class="content">
 <!--<h6>Security Software</h6>-->
 <h4>Payroll and CRM Business Solutioning</h4>
-One of JARKSCTC’s clients is a $2 Bn manufacturing MNC having their presence at multiple India locations. They were facing challenges in their blue-collar employee payment process, as their legacy system and processes ran for 20+ years. Their current team referred to their process as the most optimized one; however,...                        </div>
+One of Consulting’s clients is a $2 Bn manufacturing MNC having their presence at multiple India locations. They were facing challenges in their blue-collar employee payment process, as their legacy system and processes ran for 20+ years. Their current team referred to their process as the most optimized one; however,...                        </div>
 </div>
 <div class="action">
 <a href="case-studies/payroll-and-crm-business-solutioning/index.html" class="btn btn-primary">Read More</a>
@@ -1053,8 +910,8 @@ One of JARKSCTC’s clients is a $2 Bn manufacturing MNC having their presence a
 </future>
 <div class="content">
 <!--<h6>Consulting Management</h6>-->
-<h4>BOT</h4>
-Outsourcing is one of the well-known approaches to do cost optimization with the business. Many organizations have location constraints, so they do it at their location, but some services have no restrictions; hence, those services are outsourced to low-cost locations like India, the Philippines, etc. It always has a risk;...                        </div>
+<h4>Payroll and CRM Business Solutioning</h4>
+One of Consulting’s clients is a $2 Bn manufacturing MNC having their presence at multiple India locations. They were facing challenges in their blue-collar employee payment process, as their legacy system and processes ran for 20+ years. Their current team referred to their process as the most optimized one; however      </div>
 </div>
 <div class="action">
 <a href="case-studies/bot/index.html" class="btn btn-primary">Read More</a>
@@ -1062,316 +919,31 @@ Outsourcing is one of the well-known approaches to do cost optimization with the
 </div>
 		</div>
 	</div>
-</div></div></div></div></div></div></div></div><section data-vc-full-width="true" data-vc-full-width-init="false" class="vc_section spackagesCtrl"><div class="vc_row wpb_row vc_row-fluid sPackagesStyle"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner"><div class="wpb_wrapper"><div class="vc_row wpb_row vc_inner vc_row-fluid"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner"><div class="wpb_wrapper"><h2 style="text-align: center" class="vc_custom_heading" >What is in it for me:</h2></div></div></div></div></div></div></div></div><div class="vc_row wpb_row vc_row-fluid sPackagesStyle MObHideServices"><div class="servicePhraseCtrl wpb_column vc_column_container vc_col-sm-6"><div class="vc_column-inner"><div class="wpb_wrapper">
-	<div  class="wpb_single_image wpb_content_element vc_align_center">
-		
-		<figure class="wpb_wrapper vc_figure">
-			<div class="vc_single_image-wrapper vc_box_circle  vc_box_border_grey"><img width="400" height="400" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20400%20400'%3E%3C/svg%3E" class="vc_single_image-img attachment-full" alt="img8" data-lazy-srcset="https://JARKS CTC Private Limited/wp-content/uploads/2020/09/img8.jpg 400w, https://JARKS CTC Private Limited/wp-content/uploads/2020/09/img8-300x300.jpg 300w, https://JARKS CTC Private Limited/wp-content/uploads/2020/09/img8-150x150.jpg 150w" data-lazy-sizes="(max-width: 400px) 100vw, 400px" data-lazy-src="wp-content/uploads/2020/09/img8.jpg" /><noscript><img width="400" height="400" src="wp-content/uploads/2020/09/img8.jpg" class="vc_single_image-img attachment-full" alt="img8" srcset="https://JARKS CTC Private Limited/wp-content/uploads/2020/09/img8.jpg 400w, https://JARKS CTC Private Limited/wp-content/uploads/2020/09/img8-300x300.jpg 300w, https://JARKS CTC Private Limited/wp-content/uploads/2020/09/img8-150x150.jpg 150w" sizes="(max-width: 400px) 100vw, 400px" /></noscript></div>
-		</figure>
-	</div>
-</div></div></div><div class="wpb_column vc_column_container vc_col-sm-6"><div class="vc_column-inner"><div class="wpb_wrapper"><div  class="vc_wp_text wpb_content_element"><div class="widget widget_text">			<div class="textwidget"></p>
-<h4>Service Seeker</h4>
-<h3>Need a trusted partner with strong fundamentals to own multiple operational touch points.</h3>
-<ul>
-<li>Helping you focus on your own core business operations</li>
-<li>Seeks a reliable partner with requisite subject matter expertise</li>
-<li>Needs wide range of services at best commercials</li>
-<li>Corporate assurance on effective service delivery</li>
-</ul>
-<p><a class="btn btn-primary" href="https://JARKSCTCors.com/service-seeker/" target="_blank" rel="noopener noreferrer">Sign Up Now</a> <a class="btn btn-danger" href="package-2/index.html" target="_blank" rel="noopener noreferrer">View Package</a></p>
-</div>
-		</div></div></div></div></div></div><div class="vc_row wpb_row vc_row-fluid sPackagesStyle MObHideServices vc_custom_1603891077300"><div class="wpb_column vc_column_container vc_col-sm-6"><div class="vc_column-inner"><div class="wpb_wrapper">
-	<div  class="wpb_single_image wpb_content_element vc_align_center">
-		
-		<figure class="wpb_wrapper vc_figure">
-			<div class="vc_single_image-wrapper vc_box_circle  vc_box_border_grey"><img width="400" height="400" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20400%20400'%3E%3C/svg%3E" class="vc_single_image-img attachment-full" alt="img9" data-lazy-srcset="https://JARKS CTC Private Limited/wp-content/uploads/2020/09/img9.jpg 400w, https://JARKS CTC Private Limited/wp-content/uploads/2020/09/img9-300x300.jpg 300w, https://JARKS CTC Private Limited/wp-content/uploads/2020/09/img9-150x150.jpg 150w" data-lazy-sizes="(max-width: 400px) 100vw, 400px" data-lazy-src="wp-content/uploads/2020/09/img9.jpg" /><noscript><img width="400" height="400" src="wp-content/uploads/2020/09/img9.jpg" class="vc_single_image-img attachment-full" alt="img9" srcset="https://JARKS CTC Private Limited/wp-content/uploads/2020/09/img9.jpg 400w, https://JARKS CTC Private Limited/wp-content/uploads/2020/09/img9-300x300.jpg 300w, https://JARKS CTC Private Limited/wp-content/uploads/2020/09/img9-150x150.jpg 150w" sizes="(max-width: 400px) 100vw, 400px" /></noscript></div>
-		</figure>
-	</div>
-</div></div></div><div class="wpb_column vc_column_container vc_col-sm-6"><div class="vc_column-inner"><div class="wpb_wrapper"><div  class="vc_wp_text wpb_content_element"><div class="widget widget_text">			<div class="textwidget"></p>
-<h4>Consultant</h4>
-<h3>A subject matter expert, governance mentor serving as a link between service seeker &amp; service provider.</h3>
-<ul>
-<li>Verified and trustworthy subject matter expert of respective domain</li>
-<li>Bridge between service seeker and service provider</li>
-<li>Ensures successful project allocation, governance and delivery</li>
-</ul>
-<p><a class="btn btn-primary" href="consultant/index.html" target="_blank" rel="noopener noreferrer">Sign Up Now</a> <a class="btn btn-danger" href="package-consultant/index.html" target="_blank" rel="noopener noreferrer">View Package</a></p>
-</div>
-		</div></div></div></div></div></div><div class="vc_row wpb_row vc_row-fluid sPackagesStyle MObHideServices"><div class="servicePhraseCtrl wpb_column vc_column_container vc_col-sm-6"><div class="vc_column-inner"><div class="wpb_wrapper">
-	<div  class="wpb_single_image wpb_content_element vc_align_center">
-		
-		<figure class="wpb_wrapper vc_figure">
-			<div class="vc_single_image-wrapper vc_box_circle  vc_box_border_grey"><img width="400" height="400" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20400%20400'%3E%3C/svg%3E" class="vc_single_image-img attachment-full" alt="img10" data-lazy-srcset="https://JARKS CTC Private Limited/wp-content/uploads/2020/09/img10.jpg 400w, https://JARKS CTC Private Limited/wp-content/uploads/2020/09/img10-300x300.jpg 300w, https://JARKS CTC Private Limited/wp-content/uploads/2020/09/img10-150x150.jpg 150w" data-lazy-sizes="(max-width: 400px) 100vw, 400px" data-lazy-src="wp-content/uploads/2020/09/img10.jpg" /><noscript><img width="400" height="400" src="wp-content/uploads/2020/09/img10.jpg" class="vc_single_image-img attachment-full" alt="img10" srcset="https://JARKS CTC Private Limited/wp-content/uploads/2020/09/img10.jpg 400w, https://JARKS CTC Private Limited/wp-content/uploads/2020/09/img10-300x300.jpg 300w, https://JARKS CTC Private Limited/wp-content/uploads/2020/09/img10-150x150.jpg 150w" sizes="(max-width: 400px) 100vw, 400px" /></noscript></div>
-		</figure>
-	</div>
-</div></div></div><div class="wpb_column vc_column_container vc_col-sm-6"><div class="vc_column-inner"><div class="wpb_wrapper"><div  class="vc_wp_text wpb_content_element"><div class="widget widget_text">			<div class="textwidget"></p>
-<h4>Service Provider</h4>
-<h3>Need a trusted partner with strong fundamentals to bring growth &amp; efficiency in the business.</h3>
-<ul>
-<li>Sitting on idle capacity</li>
-<li>Needs immediate qualified leads commensurate to the size of the business</li>
-<li>Presently struggling with high cost of qualified lead generation</li>
-<li>Corporate assurance on payments</li>
-</ul>
-<p><a class="btn btn-primary" href="serviceprovider/index.html" target="_blank" rel="noopener noreferrer">Sign Up Now</a> <a class="btn btn-danger" href="package-service-provider/index.html" target="_blank" rel="noopener noreferrer">View Package</a></p>
-</div>
-		</div></div></div></div></div></div><div class="vc_row wpb_row vc_row-fluid sPackagesStyle DeskHideServices"><div class="servicePhraseCtrl wpb_column vc_column_container vc_col-sm-6"><div class="vc_column-inner"><div class="wpb_wrapper"><div  class="vc_wp_text wpb_content_element"><div class="widget widget_text">			<div class="textwidget"></p>
-<h4>Service Seeker</h4>
-<h3>Need a trusted partner with strong fundamentals to own multiple operational touch points.</h3>
-<ul>
-<li>Helping you focus on your own core business operations</li>
-<li>Seeks a reliable partner with requisite subject matter expertise</li>
-<li>Needs wide range of services at best commercials</li>
-<li>Corporate assurance on effective service delivery</li>
-</ul>
-<p><a class="btn btn-primary" href="service-seeker/index.html" target="_blank" rel="noopener noreferrer">Sign Up Now</a> <a class="btn btn-danger" href="package-2/index.html" target="_blank" rel="noopener noreferrer">View Package</a></p>
-</div>
-		</div></div></div></div></div><div class="wpb_column vc_column_container vc_col-sm-6"><div class="vc_column-inner"><div class="wpb_wrapper">
-	<div  class="wpb_single_image wpb_content_element vc_align_center">
-		
-		<figure class="wpb_wrapper vc_figure">
-			<div class="vc_single_image-wrapper vc_box_circle  vc_box_border_grey"><img width="400" height="400" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20400%20400'%3E%3C/svg%3E" class="vc_single_image-img attachment-full" alt="img8" data-lazy-srcset="https://JARKS CTC Private Limited/wp-content/uploads/2020/09/img8.jpg 400w, https://JARKS CTC Private Limited/wp-content/uploads/2020/09/img8-300x300.jpg 300w, https://JARKS CTC Private Limited/wp-content/uploads/2020/09/img8-150x150.jpg 150w" data-lazy-sizes="(max-width: 400px) 100vw, 400px" data-lazy-src="wp-content/uploads/2020/09/img8.jpg" /><noscript><img width="400" height="400" src="wp-content/uploads/2020/09/img8.jpg" class="vc_single_image-img attachment-full" alt="img8" srcset="https://JARKS CTC Private Limited/wp-content/uploads/2020/09/img8.jpg 400w, https://JARKS CTC Private Limited/wp-content/uploads/2020/09/img8-300x300.jpg 300w, https://JARKS CTC Private Limited/wp-content/uploads/2020/09/img8-150x150.jpg 150w" sizes="(max-width: 400px) 100vw, 400px" /></noscript></div>
-		</figure>
-	</div>
-</div></div></div></div><div class="vc_row wpb_row vc_row-fluid sPackagesStyle DeskHideServices vc_custom_1603890159790"><div class="wpb_column vc_column_container vc_col-sm-6"><div class="vc_column-inner"><div class="wpb_wrapper">
-	<div  class="wpb_single_image wpb_content_element vc_align_center">
-		
-		<figure class="wpb_wrapper vc_figure">
-			<div class="vc_single_image-wrapper vc_box_circle  vc_box_border_grey"><img width="400" height="400" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20400%20400'%3E%3C/svg%3E" class="vc_single_image-img attachment-full" alt="img9" data-lazy-srcset="https://JARKS CTC Private Limited/wp-content/uploads/2020/09/img9.jpg 400w, https://JARKS CTC Private Limited/wp-content/uploads/2020/09/img9-300x300.jpg 300w, https://JARKS CTC Private Limited/wp-content/uploads/2020/09/img9-150x150.jpg 150w" data-lazy-sizes="(max-width: 400px) 100vw, 400px" data-lazy-src="wp-content/uploads/2020/09/img9.jpg" /><noscript><img width="400" height="400" src="wp-content/uploads/2020/09/img9.jpg" class="vc_single_image-img attachment-full" alt="img9" srcset="https://JARKS CTC Private Limited/wp-content/uploads/2020/09/img9.jpg 400w, https://JARKS CTC Private Limited/wp-content/uploads/2020/09/img9-300x300.jpg 300w, https://JARKS CTC Private Limited/wp-content/uploads/2020/09/img9-150x150.jpg 150w" sizes="(max-width: 400px) 100vw, 400px" /></noscript></div>
-		</figure>
-	</div>
-</div></div></div><div class="wpb_column vc_column_container vc_col-sm-6"><div class="vc_column-inner"><div class="wpb_wrapper"><div  class="vc_wp_text wpb_content_element"><div class="widget widget_text">			<div class="textwidget"></p>
-<h4>Consultant</h4>
-<h3>A subject matter expert, governance mentor serving as a link between service seeker &amp; service provider.</h3>
-<ul>
-<li>Verified and trustworthy subject matter expert of respective domain</li>
-<li>Bridge between service seeker and service provider</li>
-<li>Ensures successful project allocation, governance and delivery</li>
-</ul>
-<p><a class="btn btn-primary" href="consultant/index.html" target="_blank" rel="noopener noreferrer">Sign Up Now</a> <a class="btn btn-danger" href="package-consultant/index.html" target="_blank" rel="noopener noreferrer">View Package</a></p>
-</div>
-		</div></div></div></div></div></div><div class="vc_row wpb_row vc_row-fluid sPackagesStyle DeskHideServices"><div class="servicePhraseCtrl wpb_column vc_column_container vc_col-sm-6"><div class="vc_column-inner"><div class="wpb_wrapper"><div  class="vc_wp_text wpb_content_element"><div class="widget widget_text">			<div class="textwidget"></p>
-<h4>Service Provider</h4>
-<h3>Need a trusted partner with strong fundamentals to bring growth &amp; efficiency in the business.</h3>
-<ul>
-<li>Sitting on idle capacity</li>
-<li>Needs immediate qualified leads commensurate to the size of the business</li>
-<li>Presently struggling with high cost of qualified lead generation</li>
-<li>Corporate assurance on payments</li>
-</ul>
-<p><a class="btn btn-primary" href="serviceprovider/index.html" target="_blank" rel="noopener noreferrer">Sign Up Now</a> <a class="btn btn-danger" href="package-service-provider/index.html" target="_blank" rel="noopener noreferrer">View Package</a></p>
-</div>
-		</div></div></div></div></div><div class="wpb_column vc_column_container vc_col-sm-6"><div class="vc_column-inner"><div class="wpb_wrapper">
-	<div  class="wpb_single_image wpb_content_element vc_align_center">
-		
-		<figure class="wpb_wrapper vc_figure">
-			<div class="vc_single_image-wrapper vc_box_circle  vc_box_border_grey"><img width="400" height="400" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20400%20400'%3E%3C/svg%3E" class="vc_single_image-img attachment-full" alt="img10" data-lazy-srcset="https://JARKS CTC Private Limited/wp-content/uploads/2020/09/img10.jpg 400w, https://JARKS CTC Private Limited/wp-content/uploads/2020/09/img10-300x300.jpg 300w, https://JARKS CTC Private Limited/wp-content/uploads/2020/09/img10-150x150.jpg 150w" data-lazy-sizes="(max-width: 400px) 100vw, 400px" data-lazy-src="wp-content/uploads/2020/09/img10.jpg" /><noscript><img width="400" height="400" src="wp-content/uploads/2020/09/img10.jpg" class="vc_single_image-img attachment-full" alt="img10" srcset="https://JARKS CTC Private Limited/wp-content/uploads/2020/09/img10.jpg 400w, https://JARKS CTC Private Limited/wp-content/uploads/2020/09/img10-300x300.jpg 300w, https://JARKS CTC Private Limited/wp-content/uploads/2020/09/img10-150x150.jpg 150w" sizes="(max-width: 400px) 100vw, 400px" /></noscript></div>
-		</figure>
-	</div>
-</div></div></div></div></section><div class="vc_row-full-width vc_clearfix"></div><div data-vc-full-width="true" data-vc-full-width-init="false" data-vc-stretch-content="true" class="vc_row wpb_row vc_row-fluid flex-box packagesHide vc_row-no-padding"><div class="box-background bg-1 wpb_column vc_column_container vc_col-sm-6 vc_col-has-fill"><div class="vc_column-inner vc_custom_1601580373519"><div class="wpb_wrapper"><div class="vc_row wpb_row vc_inner vc_row-fluid"><div class="inside wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner"><div class="wpb_wrapper">
+</div></div></div></div></div></div></div></div>
+<div class="vc_row-full-width vc_clearfix"></div><div data-vc-full-width="true" data-vc-full-width-init="false" data-vc-stretch-content="true" class="vc_row wpb_row vc_row-fluid flex-box packagesHide vc_row-no-padding"><div class="box-background bg-1 wpb_column vc_column_container vc_col-sm-6 vc_col-has-fill"><div class="vc_column-inner vc_custom_1601580373519"><div class="wpb_wrapper"><div class="vc_row wpb_row vc_inner vc_row-fluid"><div class="inside wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner"><div class="wpb_wrapper">
+	
+</div></div></div></div></div></div></div>
+
 	<div class="wpb_raw_code wpb_content_element wpb_raw_html" >
 		<div class="wpb_wrapper">
-			<div class="insie">
-                <h3>Service Seeker</h3>
-                 <div class="row">
-                <div class="col left">
-                <ul class="l2">              
-<li><strong><em>Need more time for core business?</em></strong></li>
-<li>Need a <strong><em>Reliable Partner</em></strong> for:
-<ul>
- <li>Company Incorporation</li>
-<li>Website/ Mobile Application Development</li>
-<li>Business Process Outsourcing/ Consulting ~ HR, Sales, Marketing, Finance/ Accounts/ Taxation/ Audit, IT & Technology, Legal & Secretarial</li>
-   <li>Fund Raising/ Other Loan Requirements</li> 
-</ul>
-</li> 
-<li>Need a single <strong><em>partner with strong leadership</em></strong> team to own multiple transactional touch points. </li>
-<li>Need <strong><em>corporate assurance on service delivery</em></strong></li>
-<li>Need the best service in the most <strong><em>affordable commercials</em></strong> without worrying about RFP/ negotiation process</li>
-</ul>
-                </div>
-                 <div class="col right">
-                <ul>
-                
-               <div class="l1"> <i class="fa fa-envelope"></i> Email: <a class="l1" href="mailto:connect@JARKS CTC Private Limited">connect@JARKS CTC Private Limited</a></div>
-               <div class="l1"> <i class="fa fa-phone"></i> Phone: <a class="l1"href="tel:+9108963075111">+91 (0) 896 3075 111</a></div>
-                </ul>
-
-                </div>
-                </div>
-                  <div class="action">
-            <a href="#/" class="btn btn-dark">Sign Up Now</a>
-           <a href="package/index.html" class="btn btn-danger">View Package</i></a>
-          </div>
-                </div>
-		</div>
-	</div>
-</div></div></div></div></div></div></div><div class="box-background bg-2 wpb_column vc_column_container vc_col-sm-6 vc_col-has-fill"><div class="vc_column-inner vc_custom_1601738391579"><div class="wpb_wrapper"><div class="vc_row wpb_row vc_inner vc_row-fluid"><div class="inside rrp wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner vc_custom_1601739977024"><div class="wpb_wrapper">
-	<div class="wpb_raw_code wpb_content_element wpb_raw_html" >
-		<div class="wpb_wrapper">
-			<div class="insie rr">
-                <h3>Service Provider</h3>
-                <div class="row">
-                <div class="col left">
-                <ul>                
-<li><strong><em>Sitting on idle capacity</em></strong></li>
-<li>Looking out for <strong><em>potential leads without spending</em></strong> on advertisements, digital marketing and social media, and then getting into filtration of leads. </li>
-<li>Need <strong><em>corporate assurance on payment </em></strong>milestones linked with service delivery</li>
-<li>Want to receive the customer requirement without worrying about RFP/ negotiation process</li>
-<li>How to <strong><em>integrate technology</em></strong> to improve business efficiency</li>
-<li>How to <strong><em>sell online</em></strong></li>
-<li>Is the <strong><em>business/ idea eligible for financing</em></strong>and what options</li> 
-                </div>
-                 <div class="col right">
-                <ul><br><br>
-                <div class="l1"><i class="fa fa-envelope"></i> Email: <a class="l1"href="mailto:connect@JARKS CTC Private Limited">connect@JARKS CTC Private Limited</a></div>
-                <div class="l1"><i class="fa fa-phone"></i> Phone: <a class="l1"href="tel:+9108963075111">+91 (0) 896 3075 111</a></div>
-                </ul>
-                </div>
-                </div>
-                  <div class="action">
-            <a href="#/" class="btn btn-primary">Sign Up Now</a>
-           <a href="package/index.html" class="btn btn-dark">View Package</a>
-          </div>
-                </div>
-		</div>
-	</div>
-</div></div></div></div></div></div></div></div><div class="vc_row-full-width vc_clearfix"></div><div data-vc-full-width="true" data-vc-full-width-init="false" class="vc_row wpb_row vc_row-fluid services-seeker"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner"><div class="wpb_wrapper">
-	<div class="wpb_text_column wpb_content_element " >
-		<div class="wpb_wrapper">
 			
 		</div>
 	</div>
+</div></div></div></div></div></div></div></div><div class="vc_row-full-width vc_clearfix"></div>
+<div class="vc_row-full-width vc_clearfix"></div>
 
-	<div class="wpb_text_column wpb_content_element " >
-		<div class="wpb_wrapper">
-			
-		</div>
-	</div>
-
-	<div class="wpb_text_column wpb_content_element " >
-		<div class="wpb_wrapper">
-			<h2 style="text-align: center;">Testimonials</h2>
-
-		</div>
-	</div>
-<div class="vc_row wpb_row vc_inner vc_row-fluid cTestiMobCTrl vc_row-o-equal-height vc_row-flex"><div class="item1 wpb_column vc_column_container vc_col-sm-4"><div class="vc_column-inner"><div class="wpb_wrapper">
-	<div  class="wpb_single_image wpb_content_element vc_align_center">
-		
-		<figure class="wpb_wrapper vc_figure">
-			<div class="vc_single_image-wrapper vc_box_border_circle  vc_box_border_grey"><img width="150" height="150" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20150%20150'%3E%3C/svg%3E" class="vc_single_image-img attachment-thumbnail" alt="COO Perfact Group" data-lazy-srcset="https://JARKS CTC Private Limited/wp-content/uploads/2021/05/imgpsh_fullsize_anim-150x150.jpg 150w, https://JARKS CTC Private Limited/wp-content/uploads/2021/05/imgpsh_fullsize_anim-300x300.jpg 300w, https://JARKS CTC Private Limited/wp-content/uploads/2021/05/imgpsh_fullsize_anim-768x768.jpg 768w, https://JARKS CTC Private Limited/wp-content/uploads/2021/05/imgpsh_fullsize_anim.jpg 800w" data-lazy-sizes="(max-width: 150px) 100vw, 150px" data-lazy-src="wp-content/uploads/2021/05/imgpsh_fullsize_anim-150x150.jpg" /><noscript><img width="150" height="150" src="wp-content/uploads/2021/05/imgpsh_fullsize_anim-150x150.jpg" class="vc_single_image-img attachment-thumbnail" alt="COO Perfact Group" srcset="https://JARKS CTC Private Limited/wp-content/uploads/2021/05/imgpsh_fullsize_anim-150x150.jpg 150w, https://JARKS CTC Private Limited/wp-content/uploads/2021/05/imgpsh_fullsize_anim-300x300.jpg 300w, https://JARKS CTC Private Limited/wp-content/uploads/2021/05/imgpsh_fullsize_anim-768x768.jpg 768w, https://JARKS CTC Private Limited/wp-content/uploads/2021/05/imgpsh_fullsize_anim.jpg 800w" sizes="(max-width: 150px) 100vw, 150px" /></noscript></div>
-		</figure>
-	</div>
-
-	<div class="wpb_text_column wpb_content_element " >
-		<div class="wpb_wrapper">
-			<p style="text-align: center;">We have recently introduced an OKR based performance management system for our group of companies. JARKSCTC team helped us in designing the PMS process, selecting the right technology and implementing it. They also helped in the entire change management to make our transition seamless. It was a great learning and smooth rollout, I have ever had.</p>
-<h4 style="text-align: center;">COO<br />
-<strong>Perfact Group</strong></h4>
-
-		</div>
-	</div>
-
-	<div class="wpb_text_column wpb_content_element " >
-		<div class="wpb_wrapper">
-			
-		</div>
-	</div>
-</div></div></div><div class="item1 wpb_column vc_column_container vc_col-sm-4"><div class="vc_column-inner"><div class="wpb_wrapper">
-	<div  class="wpb_single_image wpb_content_element vc_align_center">
-		
-		<figure class="wpb_wrapper vc_figure">
-			<div class="vc_single_image-wrapper vc_box_border_circle  vc_box_border_grey"><img width="150" height="150" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20150%20150'%3E%3C/svg%3E" class="vc_single_image-img attachment-thumbnail" alt="Co-Founder Autus Consultancy" data-lazy-src="wp-content/uploads/2020/10/testiImg-150x150.jpg" /><noscript><img width="150" height="150" src="wp-content/uploads/2020/10/testiImg-150x150.jpg" class="vc_single_image-img attachment-thumbnail" alt="Co-Founder Autus Consultancy" /></noscript></div>
-		</figure>
-	</div>
-
-	<div class="wpb_text_column wpb_content_element " >
-		<div class="wpb_wrapper">
-			<p style="text-align: center;">We recently invested in an exciting early-stage startup company and wanted to create a differentiated brand strategy. The JARKSCTC team&#8217;s selected agency ran an excellent one-day workshop for all the company stakeholders. In the end, we agreed that we had crafted a brand strategy that was unique, competitive, and would help us to create a large brand.</p>
-<h4 style="text-align: center;">Co-Founder<br />
-<strong> Autus Consultancy</strong></h4>
-
-		</div>
-	</div>
-</div></div></div><div class="item1 wpb_column vc_column_container vc_col-sm-4"><div class="vc_column-inner"><div class="wpb_wrapper">
-	<div  class="wpb_single_image wpb_content_element vc_align_center">
-		
-		<figure class="wpb_wrapper vc_figure">
-			<div class="vc_single_image-wrapper vc_box_border_circle  vc_box_border_grey"><img width="150" height="150" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20150%20150'%3E%3C/svg%3E" class="vc_single_image-img attachment-thumbnail" alt="New Face" data-lazy-srcset="https://JARKS CTC Private Limited/wp-content/uploads/2020/11/New-Face-150x150.jpeg 150w, https://JARKS CTC Private Limited/wp-content/uploads/2020/11/New-Face.jpeg 225w" data-lazy-sizes="(max-width: 150px) 100vw, 150px" data-lazy-src="wp-content/uploads/2020/11/New-Face-150x150.jpg" /><noscript><img width="150" height="150" src="wp-content/uploads/2020/11/New-Face-150x150.jpg" class="vc_single_image-img attachment-thumbnail" alt="New Face" srcset="https://JARKS CTC Private Limited/wp-content/uploads/2020/11/New-Face-150x150.jpeg 150w, https://JARKS CTC Private Limited/wp-content/uploads/2020/11/New-Face.jpeg 225w" sizes="(max-width: 150px) 100vw, 150px" /></noscript></div>
-		</figure>
-	</div>
-
-	<div class="wpb_text_column wpb_content_element " >
-		<div class="wpb_wrapper">
-			<p style="text-align: center;">Efficient and effective platform to find world-class consultants. I recently hired one consultant in sales and distribution for my new line of products. All my challenges were sorted under one roof, Thanks JARKSCTC.</p>
-<h4 style="text-align: center;">Business Owner<br />
-<strong>Shoes and Soles</strong></h4>
-
-		</div>
-	</div>
-</div></div></div></div></div></div></div></div><div class="vc_row-full-width vc_clearfix"></div><div data-vc-full-width="true" data-vc-full-width-init="false" class="vc_row wpb_row vc_row-fluid projects-statistics serviceOverlay vc_custom_1613325702657 vc_row-has-fill"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner"><div class="wpb_wrapper"><div class="vc_row wpb_row vc_inner vc_row-fluid"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner"><div class="wpb_wrapper"><h2 style="text-align: center" class="vc_custom_heading" >Partners &amp; Services</h2></div></div></div></div><div id="counter" class="vc_row wpb_row vc_inner vc_row-fluid"><div class="wpb_column vc_column_container vc_col-sm-3"><div class="vc_column-inner"><div class="wpb_wrapper">	<div class="box">
-   <div class="icon">
-    				<img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="images" data-lazy-src="wp-content/uploads/2020/09/icon15.png"><noscript><img src="wp-content/uploads/2020/09/icon15.png" alt="images"></noscript>
-		    </div>
-    <div class="text">
-        <div class="counter" style="text-align: center;">
-            <span class="count percent" data-count="12">12</span>
-    </div>
-        <h6 style="text-align: center;">Service Category</h6>
-    </div>
-</div>
-		</div></div></div><div class="wpb_column vc_column_container vc_col-sm-3"><div class="vc_column-inner"><div class="wpb_wrapper">	<div class="box">
-   <div class="icon">
-    				<img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="images" data-lazy-src="wp-content/uploads/2020/09/icon13.png"><noscript><img src="wp-content/uploads/2020/09/icon13.png" alt="images"></noscript>
-		    </div>
-    <div class="text">
-        <div class="counter" style="text-align: center;">
-            <span class="count percent" data-count="350">350</span>
-    </div>
-        <h6 style="text-align: center;">Unique Services</h6>
-    </div>
-</div>
-		</div></div></div><div class="wpb_column vc_column_container vc_col-sm-3"><div class="vc_column-inner"><div class="wpb_wrapper">	<div class="box">
-   <div class="icon">
-    				<img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="images" data-lazy-src="wp-content/uploads/2020/09/icon14.png"><noscript><img src="wp-content/uploads/2020/09/icon14.png" alt="images"></noscript>
-		    </div>
-    <div class="text">
-        <div class="counter" style="text-align: center;">
-            <span class="count percent" data-count="250">250</span>
-    </div>
-        <h6 style="text-align: center;">Service Providers</h6>
-    </div>
-</div>
-		</div></div></div><div class="wpb_column vc_column_container vc_col-sm-3"><div class="vc_column-inner"><div class="wpb_wrapper">	<div class="box">
-   <div class="icon">
-    				<img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="images" data-lazy-src="wp-content/uploads/2020/09/icon16.png"><noscript><img src="wp-content/uploads/2020/09/icon16.png" alt="images"></noscript>
-		    </div>
-    <div class="text">
-        <div class="counter" style="text-align: center;">
-            <span class="count percent" data-count="160">160</span>
-    </div>
-        <h6 style="text-align: center;">Service Seekers</h6>
-    </div>
-</div>
-		</div></div></div></div></div></div></div></div><div class="vc_row-full-width vc_clearfix"></div><section class="vc_section vc_custom_1643364904873"><div class="vc_row wpb_row vc_row-fluid"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner"><div class="wpb_wrapper"><h2 style="text-align: center" class="vc_custom_heading" >Recent Blogs</h2>
-<div class="vc_grid-container-wrapper vc_clearfix">
-	<div class="vc_grid-container vc_clearfix wpb_content_element vc_basic_grid" data-initial-loading-animation="fadeIn" data-vc-grid-settings="{&quot;page_id&quot;:549,&quot;style&quot;:&quot;all&quot;,&quot;action&quot;:&quot;vc_get_vc_grid_data&quot;,&quot;shortcode_id&quot;:&quot;1644834771395-0d641c87-a5e0-1&quot;,&quot;tag&quot;:&quot;vc_basic_grid&quot;}" data-vc-request="https://JARKS CTC Private Limited/wp-admin/admin-ajax.php" data-vc-post-id="549" data-vc-public-nonce="4bb3a89d4a">
-		<style data-type="vc_shortcodes-custom-css">.vc_custom_1419240516480{background-color: #f9f9f9 !important;}</style><div class="vc_grid vc_row vc_grid-gutter-30px vc_pageable-wrapper vc_hook_hover" data-vc-pageable-content="true"><div class="vc_pageable-slide-wrapper vc_clearfix" data-vc-grid-content="true"><div class="vc_grid-item vc_clearfix vc_col-sm-4 vc_grid-item-zone-c-bottom"><div class="vc_grid-item-mini vc_clearfix "><div class="vc_gitem-animated-block " "><div data-bg="https://JARKS CTC Private Limited/wp-content/uploads/2021/09/concat-1-1024x282.jpg" class="vc_gitem-zone vc_gitem-zone-a vc-gitem-zone-height-mode-auto vc-gitem-zone-height-mode-auto-1-1 vc_gitem-is-link rocket-lazyload" style="!important;"><a href="what-are-the-8-advantages-of-outsourcing-hr-functions/index.html" title="What are the 8 Advantages of Outsourcing HR Functions?" class="vc_gitem-link vc-zone-link"></a><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" class="vc_gitem-zone-img" alt="WHAT ARE THE 8 ADVANTAGES OF OUTSOURCING HR FUNCTIONS?" data-lazy-src="wp-content/uploads/2021/09/concat-1-1024x282.jpg"><noscript><img src="wp-content/uploads/2021/09/concat-1-1024x282.jpg" class="vc_gitem-zone-img" alt="WHAT ARE THE 8 ADVANTAGES OF OUTSOURCING HR FUNCTIONS?"></noscript><div class="vc_gitem-zone-mini"></div></div></div><div class="vc_gitem-zone vc_gitem-zone-c vc_custom_1419240516480"><div class="vc_gitem-zone-mini"><div class="vc_gitem_row vc_row vc_gitem-row-position-top"><div class="vc_col-sm-12 vc_gitem-col vc_gitem-col-align-"><div class="vc_custom_heading vc_gitem-post-data vc_gitem-post-data-source-post_title" ><h4 style="text-align: left" >What are the 8 Advantages of Outsourcing HR Functions?</h4></div><div class="vc_custom_heading vc_gitem-post-data vc_gitem-post-data-source-post_excerpt" ><p style="text-align: left" ><p>With the industry getting more attentive towards employee satisfaction, managing human resources efficiently for a company of any size is integral. However, keeping the HR policies up to date can be challenging because of constantly changing rules and regulations regarding employment and labour, especially without a sincere staff force staying up to date with local &hellip; <a href="what-are-the-8-advantages-of-outsourcing-hr-functions/index.html" class="more-link">Continue reading <span class="screen-reader-text">What are the 8 Advantages of Outsourcing HR Functions?</span> <span class="meta-nav">&rarr;</span></a></p>
-</p></div><div class="vc_btn3-container vc_btn3-left"><a class="vc_general vc_btn3 vc_btn3-size-md vc_btn3-shape-rounded vc_btn3-style-flat vc_btn3-color-juicy-pink" a href="what-are-the-8-advantages-of-outsourcing-hr-functions/index.html" class="vc_gitem-link vc_general vc_btn3 vc_general vc_btn3 vc_btn3-size-md vc_btn3-shape-rounded vc_btn3-style-flat vc_btn3-color-juicy-pink" title="Read more">Read more</a></div></div></div></div></div></div><div class="vc_clearfix"></div></div><div class="vc_grid-item vc_clearfix vc_col-sm-4 vc_grid-item-zone-c-bottom"><div class="vc_grid-item-mini vc_clearfix "><div class="vc_gitem-animated-block " "><div data-bg="https://JARKS CTC Private Limited/wp-content/uploads/2022/02/Untitled-design-1-1024x649.jpg" class="vc_gitem-zone vc_gitem-zone-a vc-gitem-zone-height-mode-auto vc-gitem-zone-height-mode-auto-1-1 vc_gitem-is-link rocket-lazyload" style="!important;"><a href="what-should-you-know-about-hr-shared-services/index.html" title="What Should You Know About HR Shared Services?" class="vc_gitem-link vc-zone-link"></a><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" class="vc_gitem-zone-img" alt="HR Shared Services?" data-lazy-src="wp-content/uploads/2022/02/Untitled-design-1-1024x649.jpg"><noscript><img src="wp-content/uploads/2022/02/Untitled-design-1-1024x649.jpg" class="vc_gitem-zone-img" alt="HR Shared Services?"></noscript><div class="vc_gitem-zone-mini"></div></div></div><div class="vc_gitem-zone vc_gitem-zone-c vc_custom_1419240516480"><div class="vc_gitem-zone-mini"><div class="vc_gitem_row vc_row vc_gitem-row-position-top"><div class="vc_col-sm-12 vc_gitem-col vc_gitem-col-align-"><div class="vc_custom_heading vc_gitem-post-data vc_gitem-post-data-source-post_title" ><h4 style="text-align: left" >What Should You Know About HR Shared Services?</h4></div><div class="vc_custom_heading vc_gitem-post-data vc_gitem-post-data-source-post_excerpt" ><p style="text-align: left" ><p>HR Shared Services is a business strategy that consolidates various human resource services shared across an organization. The primary benefit of increased operational efficiency, with some other benefits including cost savings and improved customer service levels.&nbsp; Who Might Benefit from This? This strategy would be beneficial for organizations that want to streamline their human resources &hellip; <a href="what-should-you-know-about-hr-shared-services/index.html" class="more-link">Continue reading <span class="screen-reader-text">What Should You Know About HR Shared Services?</span> <span class="meta-nav">&rarr;</span></a></p>
-</p></div><div class="vc_btn3-container vc_btn3-left"><a class="vc_general vc_btn3 vc_btn3-size-md vc_btn3-shape-rounded vc_btn3-style-flat vc_btn3-color-juicy-pink" a href="what-should-you-know-about-hr-shared-services/index.html" class="vc_gitem-link vc_general vc_btn3 vc_general vc_btn3 vc_btn3-size-md vc_btn3-shape-rounded vc_btn3-style-flat vc_btn3-color-juicy-pink" title="Read more">Read more</a></div></div></div></div></div></div><div class="vc_clearfix"></div></div><div class="vc_grid-item vc_clearfix vc_col-sm-4 vc_grid-item-zone-c-bottom"><div class="vc_grid-item-mini vc_clearfix "><div class="vc_gitem-animated-block " "><div data-bg="https://JARKS CTC Private Limited/wp-content/uploads/2022/02/Untitled-design-1024x409.jpg" class="vc_gitem-zone vc_gitem-zone-a vc-gitem-zone-height-mode-auto vc-gitem-zone-height-mode-auto-1-1 vc_gitem-is-link rocket-lazyload" style="!important;"><a href="what-is-developing-an-omnichannel-strategy/index.html" title="What is Developing an Omnichannel Strategy?" class="vc_gitem-link vc-zone-link"></a><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" class="vc_gitem-zone-img" alt="What is Developing an omnichannel strategy?" data-lazy-src="wp-content/uploads/2022/02/Untitled-design-1024x409.jpg"><noscript><img src="wp-content/uploads/2022/02/Untitled-design-1024x409.jpg" class="vc_gitem-zone-img" alt="What is Developing an omnichannel strategy?"></noscript><div class="vc_gitem-zone-mini"></div></div></div><div class="vc_gitem-zone vc_gitem-zone-c vc_custom_1419240516480"><div class="vc_gitem-zone-mini"><div class="vc_gitem_row vc_row vc_gitem-row-position-top"><div class="vc_col-sm-12 vc_gitem-col vc_gitem-col-align-"><div class="vc_custom_heading vc_gitem-post-data vc_gitem-post-data-source-post_title" ><h4 style="text-align: left" >What is Developing an Omnichannel Strategy?</h4></div><div class="vc_custom_heading vc_gitem-post-data vc_gitem-post-data-source-post_excerpt" ><p style="text-align: left" ><p>If you have been wondering how to take your marketing efforts from static to offline, or single-screen online marketing, to a more dynamic and engaging space, then this article is for you. This post is for business owners and marketers who want to Developing an omnichannel strategy a robust customer experience across multiple channels, using each one &hellip; <a href="what-is-developing-an-omnichannel-strategy/index.html" class="more-link">Continue reading <span class="screen-reader-text">What is Developing an Omnichannel Strategy?</span> <span class="meta-nav">&rarr;</span></a></p>
-</p></div><div class="vc_btn3-container vc_btn3-left"><a class="vc_general vc_btn3 vc_btn3-size-md vc_btn3-shape-rounded vc_btn3-style-flat vc_btn3-color-juicy-pink" a href="what-is-developing-an-omnichannel-strategy/index.html" class="vc_gitem-link vc_general vc_btn3 vc_general vc_btn3 vc_btn3-size-md vc_btn3-shape-rounded vc_btn3-style-flat vc_btn3-color-juicy-pink" title="Read more">Read more</a></div></div></div></div></div></div><div class="vc_clearfix"></div></div></div></div>
-	</div>
-</div></div></div></div></div></section>
-</div>
 
 <!-- Footer -->
 
 <footer>
+            <div class="container">
+              
+            </div>
             <div class="footer-bottom">
                <div class="container">
                   <hr>
                   <div class="col-md-12">
-                     <p class="copyright">&copy; 2022 JARKSCTC, All Rights Reserved.</p>
+                     <p class="copyright">&copy; 2020 Consulting, All Rights Reserved.</p>
                      <ul class="social-icon">
                         <li><a href="https://www.facebook.com/JARKS CTC-100749261805054" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
                         <li><a href="https://www.instagram.com/jarksctc/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
